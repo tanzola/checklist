@@ -1,0 +1,70 @@
+:root{
+    --checkbox-size: 40px;
+}
+
+.checklist{
+    display: flex;
+    background-color: hotpink;
+    height:300px;
+}
+
+.listitem{
+    margin: auto;
+    padding: 5px;
+    height: var(--checkbox-size);
+    width: 300px;
+    max-width: 500px;
+    display: flex;
+    filter: drop-shadow(1px 1px 5px #00000010);
+}
+
+.box_check {
+    height: 100%;
+    width: var(--checkbox-size);
+    min-width: var(--checkbox-size);
+}
+
+.checked {
+    background-color: #44ca66;
+}
+
+.unchecked {
+    background-color: #F4B400;
+}
+
+.box_text {
+    height: auto;
+    width: 100%;
+}
+
+.typing{
+    background-color: whitesmoke;
+}
+
+.typed {
+    background-color: #f3f3f3;
+}
+
+.iteminput {
+    background-color: white;
+    width: calc(100% - 22px);
+    text-align: center;
+    font-size:medium;
+    padding: 5px;
+    outline-color: slategrey;
+    border-width: 0px;
+}
+
+.itemtext {
+    -ms-transform: translateY(-40%);
+    transform: translateY(-40%);
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.textform {
+    -ms-transform: translateY(22%);
+    transform: translateY(22%);
+    text-align: center;
+}

@@ -48,10 +48,10 @@
 .iteminput {
     background-color: white;
     width: calc(100% - 22px);
-    text-align: center;
+    text-align: left;
     font-size:medium;
     padding: 5px;
-    outline-color: slategrey;
+    outline-color: silver;
     border-width: 0px;
 }
 
@@ -60,7 +60,8 @@
     transform: translateY(-40%);
     max-width: 100%;
     overflow: hidden;
-    text-align: center;
+    text-align: left;
+    padding: 0 12px 0 12px;
 }
 
 .textform {

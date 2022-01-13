@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import './checkbox.css'
+import './Listitem.css'
 
-function Checkbox() {
-    const [isChecked, setCheck] = useState(false);
-    const [isTyping, setTyping] = useState(false);
-    const [itemText, setItemText] = useState("");
+function Listitem(props) {
+    const [exists, setExists] = useState(props.exists);
+    const [isChecked, setCheck] = useState(props.checked);
+    const [isTyping, setTyping] = useState(props.typing);
+    const [itemText, setItemText] = useState(props.text);
 
     const checkbox = <div className={isChecked ? "box_check checked" : "box_check unchecked"} onClick={() => setCheck(!isChecked)} />;
     
@@ -29,14 +30,14 @@ function Checkbox() {
         </div>
     )
     
+    const box_preexisting = <div className="preexisting" onClick={() => setExists(!exists)} />
+    const box_existing = <> {checkbox} {isTyping ? box_text_typing : box_text_typed} </>
+
     return(
-        <div classname="checklist">
-            <div className="listitem">
-                {checkbox}
-                {isTyping ? box_text_typing : box_text_typed}
-            </div>
+        <div className="listitem">
+            {exists ? box_existing : box_preexisting}
         </div>
     );
 }
 
-export default Checkbox;
+export default Listitem;

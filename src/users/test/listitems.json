@@ -1,0 +1,16 @@
+{
+	"user1": {
+		"lists": {
+			"list1": {
+				{
+			        "text": "hello",
+			        "checked": true
+			    },
+			    {
+			        "text": "oh hi",
+			        "checked": false
+			    }
+			}
+		}
+	}
+}

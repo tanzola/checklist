@@ -1,0 +1,5 @@
+.checklist {
+    display: flex;
+    background-color: hotpink;
+    height:300px;
+}

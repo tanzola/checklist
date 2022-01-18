@@ -27,9 +27,22 @@ export default class usersDAO {
 
     static async getUserByID(id) {
         try {
-            
-            console.log(id);
-            const pipeline = [{ $match: { _id: new ObjectId(id) } }];
+            const pipeline = [
+                {
+                    $match: { _id: new ObjectId(id) }
+                },
+                {
+                    $lookup: {
+                        from: "checklists",
+                        let: { id: "$_id", },
+                        pipeline: [{ $match: { $expr: { $eq: ["$user_id", "$$id"] } } }],
+                        as: "checklists"
+                    }
+                },
+                {
+                    $addFields: { checklists: "$checklists" }
+                }
+            ];
             return await users.aggregate(pipeline).next();
         }
         catch (e) {

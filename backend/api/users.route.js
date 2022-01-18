@@ -5,7 +5,7 @@ import checklistsCtrl from './checklists.controller.js';
 const router = express.Router();
 
 router.route('/').get(usersCtrl.apiGetUsers);
-// router.route("/id/:id").get(usersCtrl.apiGetUserById);
+router.route('/id/:id').get(usersCtrl.apiGetUserById);
 
 router
     .route('/checklist')

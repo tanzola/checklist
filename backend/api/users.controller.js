@@ -13,7 +13,9 @@ export default class usersController {
 
   static async apiGetUserById(req, res, next) {
     try {
+      console.log('1111111');
       let id = req.params.id || {};
+      console.log('2222222');
       let user = await usersDAO.getUserByID(id);
       if (!user) {
         res.status(404).json({ error: "Not found" });

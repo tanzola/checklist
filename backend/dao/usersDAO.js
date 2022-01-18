@@ -27,6 +27,8 @@ export default class usersDAO {
 
     static async getUserByID(id) {
         try {
+            
+            console.log(id);
             const pipeline = [{ $match: { _id: new ObjectId(id) } }];
             return await users.aggregate(pipeline).next();
         }

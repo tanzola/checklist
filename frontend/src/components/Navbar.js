@@ -31,17 +31,17 @@ function Navbar(props) {
                         className="avatar">
                     </img>
                 </li>
-                <li className="nav-list-item">{displayName()}</li>
-                <li className="nav-list-item" onClick={logout}>Logout</li>
+                {/* <li className="nav-list-item">{displayName()}</li> */}
+                <li className="nav-list-item nav-text" onClick={logout}>Logout</li>
             </>
         ) : (
-            <NavLink to="/login" className="nav-list-item">Login</NavLink>
+            <NavLink to="/login" className="nav-list-item nav-text">Login</NavLink>
         )
     );
 
     return (
         <div className="navbar">
-            <span className="logo"><NavLink to="/" className="nav-list-item">Checklists</NavLink></span>
+            <span className="logo" style={{marginBottom: "2px"}}><NavLink to="/" className="nav-list-item">Checklists</NavLink></span>
             <ul className="nav-list">
                 {userinfo}
             </ul>

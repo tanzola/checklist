@@ -19,12 +19,16 @@
 }
 
 .nav-list-item {
-    margin-right: 20px;
+    margin: 1px 20px 0 0;
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     outline: none;
     color: inherit;
+}
+
+.nav-text {
+    margin-bottom: 4px;
 }
 
 .avatar {

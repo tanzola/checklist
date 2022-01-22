@@ -1,8 +1,9 @@
+import Checklist from '../components/Checklist';
 
-function Home() {
+function Home(props) {
     return (
         <div className="home">
-            Home
+            <Checklist logged_user={props.logged_user} />
         </div>
     )
 }

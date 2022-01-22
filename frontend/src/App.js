@@ -9,7 +9,6 @@ import './App.css';
 function App() {
 
     const [user, setUser] = useState(null);
-
     useEffect(() => {
         const getUser = () => {
             fetch("http://localhost:5000/auth/login/success", {
@@ -23,7 +22,7 @@ function App() {
             })
                 .then((response) => {
                     if (response.status === 200) return response.json();
-                    throw new Error("authentication has been failed!");
+                    throw new Error("authentication has failed!");
                 })
                 .then((resObject) => {
                     setUser(resObject.user);
@@ -40,8 +39,8 @@ function App() {
             <Router>
                 <Navbar user={user} />
                 <Routes>
-                    <Route path="/" element={<Home />} />
                     <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+                    <Route path="/" element={<Home logged_user={user} />} />
                 </Routes>
             </Router>
         </div>

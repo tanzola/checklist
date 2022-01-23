@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './Checklist.css';
 import Listitem from './Listitem';
+import ChecklistDataService from '../services/checklist-service';
 
 function Checklist(props) {
 
@@ -15,16 +16,41 @@ function Checklist(props) {
         )
     }, []);
 
-    const listitems = [
-        {
-            text: "hello",
-            checked: true
-        },
-        {
-            text: "oh hi",
-            checked: false
+    /*
+    if (user.checklists) {
+        console.log('----------DELETE CHECKLIST----------');
+        try {
+            ChecklistDataService.deleteChecklist('61ed9fb22a2b795af855e7fd', '61e3be6042bb223a2f20a327');
+            console.log(5);
         }
-    ]
+        catch {
+            console.log("Failed once")
+        }
+    }
+    */
+    /*
+    if (user.checklists) {
+        console.log('----------CREATE CHECKLIST-----------');
+        try {
+            ChecklistDataService.createChecklist(
+                {
+                    user_id: user._id,
+                    name: "new checklist",
+                    items: [
+                        {
+                            text: "we did it",
+                            status: true
+                        }
+                    ]
+                }
+            );
+            console.log(5);
+        }
+        catch {
+            console.log("Failed once")
+        }
+    }
+    */
 
     let checklists;
     if (user.checklists) {
@@ -34,7 +60,6 @@ function Checklist(props) {
                     {user.checklists.map(checklist => (
                         <div className="checklist shadow" key={checklist['_id']}>
                             <div>{checklist.name}</div>
-                            {console.log(checklist.items)}
                             {checklist.items.map(item => (
                                 <Listitem
                                     exists={true}

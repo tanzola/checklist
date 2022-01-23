@@ -14,10 +14,15 @@ export default class ChecklistsDAO {
 
     static async addChecklist(req) {
         try {
+            req.body.items.map(item => (
+                item.key = ObjectId()
+            ))
+
             const checklistDoc = {
-                user_id: req.body.user_id,
+                user_id: ObjectId(req.body.user_id),
                 name: req.body.name,
-                text: req.body.text
+                text: req.body.text,
+                items: req.body.items
             };
             return await checklists.insertOne(checklistDoc);
         }
@@ -47,39 +52,18 @@ export default class ChecklistsDAO {
 
     static async deleteChecklist(req) {
         try {
-            checklist_id = { user_id: req.body.user_id, _id: ObjectId(req.body.checklist_id) };
+            console.log(1);
+            checklist_id = { user_id: ObjectId(req.body.user_id), _id: ObjectId(req.body._id) };
+            console.log(req.body._id);
+            console.log(req.body.user_id);
+            console.log(2);
             const deleteResponse = await checklists.deleteOne(checklist_id);
+            console.log(3);
             return deleteResponse;
         }
         catch (e) {
             console.error(`Unable to delete checklist: ${e}`);
             return { error: e };
-        }
-    }
-
-    static async getChecklistByID(id) {  // holding - likely trash
-        try {
-            const pipeline = [
-                {
-                    $match: { _id: new ObjectId(id) }
-                },
-                {
-                    $lookup: {
-                        from: "checklists",
-                        let: { id: "$_id", },
-                        pipeline: [{ $match: { $expr: { $eq: ["$user_id", "$$id"] } } }],
-                        as: "checklists"
-                    }
-                },
-                {
-                    $addFields: { checklists: "$checklists" }
-                }
-            ];
-            return await users.aggregate(pipeline).next();
-        }
-        catch (e) {
-            console.error(`Something went wrong in getUsersByID: ${e}`);
-            throw e;
         }
     }
 }

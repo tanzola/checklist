@@ -27,6 +27,7 @@ export default class ChecklistsController {
 
     static async apiDeleteChecklist(req, res, next) {
         try {
+            console.log(0);
             const checklistResponse = await checklistsDAO.deleteChecklist(req)
             res.json({ status: "success" });
         }

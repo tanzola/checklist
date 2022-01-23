@@ -41,7 +41,7 @@ function Navbar(props) {
 
     return (
         <div className="navbar">
-            <span className="logo" style={{marginBottom: "2px"}}><NavLink to="/" className="nav-list-item">Checklists</NavLink></span>
+            <span className="logo" style={{marginBottom: "3px"}}><NavLink to="/" className="nav-list-item">Checklists</NavLink></span>
             <ul className="nav-list">
                 {userinfo}
             </ul>

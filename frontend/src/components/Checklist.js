@@ -24,7 +24,7 @@ function Checklist(props) {
             console.log(5);
         }
         catch {
-            console.log("Failed once")
+            console.log("Failed delete")
         }
     }
     */
@@ -47,7 +47,31 @@ function Checklist(props) {
             console.log(5);
         }
         catch {
-            console.log("Failed once")
+            console.log("Failed create")
+        }
+    }
+    */
+
+    /*
+    if (user.checklists && Object.keys(user.checklists).length==3) {
+        console.log('----------UPDATE CHECKLIST-----------');
+        let thischecklist = user.checklists[2];
+        thischecklist.items.map(item => (
+            item.text = 'updated'
+        ))
+        try {
+            console.log(user.checklists[2]);
+            ChecklistDataService.updateChecklist(
+                {
+                    _id: '61edc11d4acf3cdb46935a1a',
+                    user_id: user._id,
+                    name: thischecklist.name,
+                    items: thischecklist.items
+                }
+            )
+        }
+        catch {
+            console.log("Failed update")
         }
     }
     */
@@ -62,6 +86,8 @@ function Checklist(props) {
                             <div>{checklist.name}</div>
                             {checklist.items.map(item => (
                                 <Listitem
+                                    user={user}
+                                    item={item}
                                     exists={true}
                                     text={item.text}
                                     checked={item.status}

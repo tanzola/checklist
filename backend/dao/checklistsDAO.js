@@ -1,6 +1,7 @@
 import mongodb from 'mongodb';
 const ObjectId = mongodb.ObjectId;
 
+let parms;
 let checklists;
 let checklist_id;
 
@@ -14,17 +15,14 @@ export default class ChecklistsDAO {
 
     static async addChecklist(req) {
         try {
-            req.body.items.map(item => (
-                item.key = ObjectId()
-            ))
-
-            const checklistDoc = {
+            req.body.items.map(item => ( item.key = ObjectId() ))
+            parms = {
                 user_id: ObjectId(req.body.user_id),
                 name: req.body.name,
-                text: req.body.text,
                 items: req.body.items
             };
-            return await checklists.insertOne(checklistDoc);
+            const addResponse = await checklists.insertOne(parms);
+            return addResponse;
         }
         catch (e) {
             console.error(`Unable to post checklist: ${e}`);
@@ -34,14 +32,13 @@ export default class ChecklistsDAO {
 
     static async updateChecklist(req) {
         try {
-            checklist_id = { user_id: req.body.user_id, _id: ObjectId(req.body.checklist_id) };
-            const updateResponse = await checklists.updateOne(
-                checklist_id,
-                { $set: {
-                    name: req.body.name,
-                    text: req.body.text
-                } }
-            );
+            checklist_id = { user_id: ObjectId(req.body.user_id), _id: ObjectId(req.body._id) };
+            req.body.items.map(item => ( item.key = ObjectId(item.key) ));
+            parms = {
+                name: req.body.name,
+                items: req.body.items
+            }
+            const updateResponse = await checklists.updateOne( checklist_id, { $set: parms });
             return updateResponse;
         }
         catch (e) {
@@ -52,13 +49,8 @@ export default class ChecklistsDAO {
 
     static async deleteChecklist(req) {
         try {
-            console.log(1);
             checklist_id = { user_id: ObjectId(req.body.user_id), _id: ObjectId(req.body._id) };
-            console.log(req.body._id);
-            console.log(req.body.user_id);
-            console.log(2);
             const deleteResponse = await checklists.deleteOne(checklist_id);
-            console.log(3);
             return deleteResponse;
         }
         catch (e) {

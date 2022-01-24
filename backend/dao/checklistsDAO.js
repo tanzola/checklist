@@ -58,4 +58,33 @@ export default class ChecklistsDAO {
             return { error: e };
         }
     }
+
+    static async getChecklistByID(user_id, checklist_id) {
+        try {
+            const pipeline = [
+                {
+                    $match: { 
+                        _id: new ObjectId(checklist_id),
+                        user_id: new ObjectId(user_id)
+                     }
+                },
+                {
+                    $lookup: {
+                        from: "tasks",
+                        let: { id: "$_id", },
+                        pipeline: [{ $match: { $expr: { $eq: ["$checklist_id", "$$id"] } } }],
+                        as: "tasks"
+                    }
+                },
+                {
+                    $addFields: { tasks: "$tasks" }
+                }
+            ];
+            return await checklists.aggregate(pipeline).next();
+        }
+        catch (e) {
+            console.error(`Something went wrong in getChecklistsByID: ${e}`);
+            throw e;
+        }
+    }
 }

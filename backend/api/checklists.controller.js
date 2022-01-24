@@ -36,4 +36,22 @@ export default class ChecklistsController {
             res.status(500).json({ error: e.message });
         }
     }
+
+    static async apiGetChecklistById(req, res, next) {
+        try {
+            console.log("hello");
+            let user_id = req.params.id || {};
+            let checklist_id = req.params.checklist_id
+            let checklist = await checklistsDAO.getChecklistByID(user_id, checklist_id);
+            if (!checklist) {
+                res.status(404).json({ error: "Not found" });
+                return;
+            }
+            res.json(checklist);
+        }
+        catch (e) {
+            console.log(`api, ${e}`);
+            res.status(500).json({ error: e });
+        }
+    }
 }

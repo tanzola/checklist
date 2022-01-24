@@ -17,6 +17,18 @@ function Checklist(props) {
         )
     }, []);
 
+    var [testlist, setTestlist] = useState({});
+    useEffect(() => {
+        axios.get("http://localhost:5000/users/id/61e3be6042bb223a2f20a325/checklist/61edc11d4acf3cdb46935a1a")
+        .then(
+            function(res) {
+                setTestlist(res.data);
+            }
+        )
+    }, []);
+
+    console.log(testlist)
+
     /*
     if (user.checklists) {
         console.log('----------DELETE CHECKLIST----------');
@@ -76,7 +88,7 @@ function Checklist(props) {
         }
     }
     */
-    
+    /*
     if (user.checklists) {
         console.log('----------CREATE TASK-----------');
         try {
@@ -94,8 +106,7 @@ function Checklist(props) {
             console.log("Failed create task");
         }
     }
-    
-
+    */
     let checklists;
     if (user.checklists) {
         checklists = (

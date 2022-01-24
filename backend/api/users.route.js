@@ -8,6 +8,7 @@ const router = express.Router();
 router.route('/').get(usersCtrl.apiGetUsers);
 router.route('/id/:id').get(usersCtrl.apiGetUserById);
 
+router.route('/id/:id/checklist/:checklist_id').get(checklistsCtrl.apiGetChecklistById);
 
 router.post('/checklist-add', checklistsCtrl.apiPostChecklist)
 router.delete('/checklist-delete', checklistsCtrl.apiDeleteChecklist)

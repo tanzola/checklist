@@ -1,24 +1,35 @@
 :root {
     --checkbox-size: 40px;
     --li-rounding: 3px;
-    --li-width: 300px;
+    --li-width: 250px;
     --col-ghosted: #f7f7f7;
     --col-ghosted-border: rgb(225, 225, 225);
-    --col-border: #cecece;
+    --col-border: #c4c4c4;
 }
 
 .listitem {
     margin: auto;
-    padding: 5px;
-    height: var(--checkbox-size);
+    padding: 3px;
+    height: auto;
     width: var(--li-width);
-    max-width: 500px;
+    max-width: var(--li-width);
     display: flex;
     filter: drop-shadow(1px 1px 5px #00000010);
 }
 
+.preexisting {
+    height: 10px;
+    width: 100%;
+    border-radius: var(--li-rounding);
+    background-color: var(--col-ghosted);
+    border-color: var(--col-ghosted-border);
+    border-width: 1px;
+    border-style: solid;
+    margin-top: 5px;
+}
+
 .box_check {
-    height: 95%;
+    height: var(--checkbox-size);
     width: var(--checkbox-size);
     min-width: var(--checkbox-size);
     border-radius: var(--li-rounding) 0 0 var(--li-rounding);
@@ -36,19 +47,10 @@
     background-color: #F4B400;
 }
 
-.preexisting {
-    height: auto;
-    width: 100%;
-    border-radius: var(--li-rounding);
-    background-color: var(--col-ghosted);
-    border-color: var(--col-ghosted-border);
-    border-width: 1px;
-    border-style: solid;
-}
-
 .box_text {
-    height: auto;
+    height: var(--checkbox-size);
     width: 100%;
+    max-width: calc(100% - var(--checkbox-size) - 2px);
     border-radius: 0 var(--li-rounding) var(--li-rounding) 0;
     border-style: solid;
     border-width: 1px;
@@ -66,12 +68,24 @@
 
 .iteminput {
     background-color: white;
-    width: calc(100% - 22px);
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
     text-align: left;
     font-size:medium;
-    padding: 4px;
-    outline-color: silver;
-    border-width: 0px;
+    margin-left: -1px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    outline-style: none;
+    outline-color: rgb(237, 237, 237);
+    outline-width: 0px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dadada;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .itemtext {
@@ -80,8 +94,19 @@
     max-width: 100%;
     overflow: hidden;
     text-align: left;
-    padding: 0 12px 0 12px;
+    padding: 0 10px 0 10px;
 }
+
+.itemtext:before {
+    content:'';
+    width:100%;
+    height: 40px;
+    overflow: visible;
+    position:absolute;
+    left:0;
+    top:0;
+    background:linear-gradient(to right, transparent calc(var(--li-width) - var(--checkbox-size) - var(--checkbox-size)), #f3f3f3);
+  }
 
 .textform {
     -ms-transform: translateY(22%);

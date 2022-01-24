@@ -8,6 +8,19 @@ function Listitem(props) {
     const [isTyping, setTyping] = useState(props.typing);
     const [itemText, setItemText] = useState(props.text);
 
+    /*
+    function updateItem(args) {
+        if (props.item) {
+            if (args.checked != undefined) {
+                props.item.checked = args.checked;
+            }
+            if (args.text != undefined) {
+                props.item.text = args.text;
+            }
+        }
+    }
+    */
+
     const checkbox = <div className={isChecked ? "box_check checked" : "box_check unchecked"} onClick={() => setCheck(!isChecked)} />;
     
     const box_text_typing = (

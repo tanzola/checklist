@@ -86,9 +86,10 @@ function Checklist(props) {
                             <div>{checklist.name}</div>
                             {checklist.items.map(item => (
                                 <Listitem
+                                    exists={true}
                                     user={user}
                                     item={item}
-                                    exists={true}
+                                    checklist={checklist}
                                     text={item.text}
                                     checked={item.status}
                                     typing={false}

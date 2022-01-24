@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Checklist.css';
 import Listitem from './Listitem';
 import ChecklistDataService from '../services/checklist-service';
+import TaskDataService from '../services/task-service';
 
 function Checklist(props) {
 
@@ -75,6 +76,25 @@ function Checklist(props) {
         }
     }
     */
+    
+    if (user.checklists) {
+        console.log('----------CREATE TASK-----------');
+        try {
+            TaskDataService.createTask(
+                {
+                    user_id: user._id,
+                    checklist_id: "61edc11d4acf3cdb46935a1a",
+                    test: "new task!",
+                    status: false
+                }
+            );
+            console.log("task created!?");
+        }
+        catch {
+            console.log("Failed create task");
+        }
+    }
+    
 
     let checklists;
     if (user.checklists) {

@@ -3,6 +3,7 @@ import mongodb from 'mongodb';
 import dotenv from 'dotenv';
 import usersDAO from './dao/usersDAO.js';
 import checklistsDAO from './dao/checklistsDAO.js';
+import tasksDAO from './dao/tasksDAO.js';
 
 dotenv.config();
 const MongoClient = mongodb.MongoClient;
@@ -17,6 +18,7 @@ MongoClient.connect(
 }).then(async client => {
     await usersDAO.injectDB(client);
     await checklistsDAO.injectDB(client);
+    await tasksDAO.injectDB(client);
     app.listen(port, () => {
         console.log(`listening on port ${port}`)
     })

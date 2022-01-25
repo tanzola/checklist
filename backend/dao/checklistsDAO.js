@@ -64,20 +64,9 @@ export default class ChecklistsDAO {
             const pipeline = [
                 {
                     $match: { 
-                        _id: new ObjectId(checklist_id),
-                        user_id: new ObjectId(user_id)
+                        _id: ObjectId(checklist_id),
+                        user_id: ObjectId(user_id)
                      }
-                },
-                {
-                    $lookup: {
-                        from: "tasks",
-                        let: { id: "$_id", },
-                        pipeline: [{ $match: { $expr: { $eq: ["$checklist_id", "$$id"] } } }],
-                        as: "tasks"
-                    }
-                },
-                {
-                    $addFields: { tasks: "$tasks" }
                 }
             ];
             return await checklists.aggregate(pipeline).next();

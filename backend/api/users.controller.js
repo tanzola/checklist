@@ -4,8 +4,6 @@ export default class usersController {
 
     static async apiPostUser(req, res, next) {
         try {
-            console.log('-------------')
-            console.log(req.body.pid);
             const userResponse = await usersDAO.addUser(req);
             res.json(userResponse);
         }
@@ -26,7 +24,6 @@ export default class usersController {
     static async apiUpdateUser(req, res, next) {
         try {
             const userResponse = await usersDAO.updateUser(req);
-            console.log(userResponse); // log
             var { error } = userResponse;
             if (error) { res.status(400).json({ error }); }
             if (userResponse.modifiedCount === 0) { throw new Error("unable to update checklist - user may not be original poster"); }

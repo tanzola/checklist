@@ -39,7 +39,6 @@ export default class ChecklistsController {
 
     static async apiGetChecklistById(req, res, next) {
         try {
-            console.log("hello");
             let user_id = req.params.id || {};
             let checklist_id = req.params.checklist_id
             let checklist = await checklistsDAO.getChecklistByID(user_id, checklist_id);

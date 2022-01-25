@@ -1,8 +1,8 @@
 import http from '../http-common';
 
 class ChecklistDataService {
-    get(id) {
-        return http.get(`/users/id/${id}`);
+    get(data) {
+        return http.get(`/users/id/${data.userId}/checklist/${data.checklistId}`);
     }
 
     createChecklist(data) {

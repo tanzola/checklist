@@ -54,7 +54,7 @@ function App() {
                         UserDataService.createUser({ name: name, pid: userPID })
                         .then((function(resCreateUser) {
                             try {
-                                ChecklistDataService.createChecklist({ user_id: resCreateUser.data.id, name: "New Checklist", items:[{/*DELETE KEY FROM CLDAO-ADD*/}] })
+                                ChecklistDataService.createChecklist({ user_id: resCreateUser.data.insertedId, name: "New Checklist", items:[{/*DELETE KEY FROM CLDAO-ADD*/}] })
                                 .then((function(resChecklist) {
                                     let parms = { _id: resCreateUser.data.insertedId, addchecklist: resChecklist.data.insertedId }
                                     try { UserDataService.updateUser(parms); }
@@ -67,16 +67,14 @@ function App() {
             }
         } catch (e) { console.log(`error getting user in App, ${e}`)}
     }, [loggedUser]);
-
-    console.log(user);
-
+    
     return (
         <div>
             <Router>
                 <Navbar user={loggedUser} />
                 <Routes>
                     <Route path="/login" element={loggedUser ? <Navigate to="/" /> : <Login />} />
-                    <Route path="/" element={<Home logged_user={loggedUser} />} />
+                    <Route path="/" element={<Home user={user} />} />
                 </Routes>
             </Router>
         </div>

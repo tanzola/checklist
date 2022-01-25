@@ -41,7 +41,7 @@ function App() {
         try {
             if(loggedUser != null) {
                 let userPID = loggedUser.provider + loggedUser.id;
-                axios.get("http://localhost:5000/users/pid/google104768674646137928797", userPID)//
+                axios.get(`http://localhost:5000/users/pid/${userPID}`, userPID)
                 .then(function(res) { setUser(res.data); })
                 .catch( (e) => {
                     try {
@@ -50,7 +50,7 @@ function App() {
                             case "google": name = loggedUser.name.givenName;
                             case "github":
                                 if (loggedUser.displayName) { name = loggedUser.name.displayName.split(' ')[0]; }
-                                else { name = loggedUser.name.username; }
+                                else { name = loggedUser.username; }
                         }
                         UserDataService.createUser(
                             {
@@ -60,7 +60,7 @@ function App() {
                         );
                     }
                     catch (e) {
-                        console.log(`error creating new user in app, ${e}`)
+                        console.log(`error creating new user in app, ${e}, ${JSON.stringify(loggedUser)}`)
                     }
                 });
             }

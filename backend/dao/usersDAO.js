@@ -13,19 +13,18 @@ export default class usersDAO {
     }
 
     static async addUser(req) {
-        console.log(`request: ${req.body.pid}`)
         try {
-            console.log("attempting2")
             parms = {
                 _id: new mongodb.ObjectId(),
                 name: req.body.name,
-                pid: req.body.pid
+                pid: req.body.pid,
+                checklists: {}
             };
             const addResponse = await users.insertOne(parms);
             return addResponse;
         }
         catch (e) {
-            console.error(`Unable to post user: ${e}`);
+            console.error(`Unable to add user: ${e}`);
             return { error: e };
         }
     }

@@ -17,8 +17,7 @@ export default class usersDAO {
             parms = {
                 _id: new mongodb.ObjectId(),
                 name: req.body.name,
-                pid: req.body.pid,
-                checklists: []
+                pid: req.body.pid
             };
             const addResponse = await users.insertOne(parms);
             return addResponse;
@@ -88,7 +87,7 @@ export default class usersDAO {
         try {
             let filter = { _id: ObjectId(req.body._id) };
             parms = {}
-            if (req.body.addchecklist) { parms.checklists = req.body.addchecklist }
+            if (req.body.addchecklist) { parms.checklists = ObjectId(req.body.addchecklist) }
             const updateResponse = await users.updateOne( filter, { $push: parms });
             return updateResponse;
         }

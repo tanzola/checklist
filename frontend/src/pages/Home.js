@@ -1,9 +1,9 @@
-import Checklist from '../components/Checklist';
+import Checklists from '../components/Checklists';
 
 function Home(props) {
     return (
         <div className="home">
-            {props.user ? <Checklist user={props.user} /> : null}
+            {props.user ? <Checklists user={props.user} /> : null}
         </div>
     )
 }

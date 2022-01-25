@@ -18,8 +18,7 @@ export default class ChecklistsDAO {
             req.body.items.map(item => ( item.key = ObjectId() ))
             parms = {
                 user_id: ObjectId(req.body.user_id),
-                name: req.body.name,
-                tasks: []
+                name: req.body.name
             };
             const addResponse = await checklists.insertOne(parms);
             return addResponse;
@@ -64,9 +63,20 @@ export default class ChecklistsDAO {
             const pipeline = [
                 {
                     $match: { 
-                        _id: ObjectId(checklist_id),
-                        user_id: ObjectId(user_id)
+                        _id: new ObjectId(checklist_id),
+                        user_id: new ObjectId(user_id)
                      }
+                },
+                {
+                    $lookup: {
+                        from: "tasks",
+                        let: { id: "$_id", },
+                        pipeline: [{ $match: { $expr: { $eq: ["$checklist_id", "$$id"] } } }],
+                        as: "tasks"
+                    }
+                },
+                {
+                    $addFields: { tasks: "$tasks" }
                 }
             ];
             return await checklists.aggregate(pipeline).next();

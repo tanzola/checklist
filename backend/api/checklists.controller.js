@@ -14,9 +14,7 @@ export default class ChecklistsController {
 
     static async apiUpdateChecklist(req, res, next) {
         try {
-            console.log("updating...") // log
             const checklistResponse = await checklistsDAO.updateChecklist(req);
-            console.log(checklistResponse); // log
             var { error } = checklistResponse;
             if (error) { res.status(400).json({ error }); }
             if (checklistResponse.modifiedCount === 0) { throw new Error("unable to update checklist - user may not be original poster"); }

@@ -55,11 +55,6 @@ function App() {
                         .then((function(resCreateUser) {
                             try {
                                 ChecklistDataService.createChecklist({ user_id: resCreateUser.data.insertedId, name: "New Checklist", items:[{/*DELETE KEY FROM CLDAO-ADD*/}] })
-                                .then((function(resChecklist) {
-                                    let parms = { _id: resCreateUser.data.insertedId, addchecklist: resChecklist.data.insertedId }
-                                    try { UserDataService.updateUser(parms); }
-                                    catch (e) { console.log(`failed to push first checklist to new user, ${e}`); }
-                                })) 
                             } catch (e) { console.log(`failed to create checklist for new user, ${e}`) }
                         }));
                     } catch (e) { console.log(`error creating new user in App, ${e}`) }

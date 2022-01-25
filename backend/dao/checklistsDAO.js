@@ -19,7 +19,7 @@ export default class ChecklistsDAO {
             parms = {
                 user_id: ObjectId(req.body.user_id),
                 name: req.body.name,
-                items: req.body.items
+                tasks: []
             };
             const addResponse = await checklists.insertOne(parms);
             return addResponse;

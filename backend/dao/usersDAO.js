@@ -18,7 +18,7 @@ export default class usersDAO {
                 _id: new mongodb.ObjectId(),
                 name: req.body.name,
                 pid: req.body.pid,
-                checklists: {}
+                checklists: []
             };
             const addResponse = await users.insertOne(parms);
             return addResponse;
@@ -81,6 +81,20 @@ export default class usersDAO {
         catch (e) {
             console.error(`Something went wrong in getUsersByID: ${e}`);
             throw e;
+        }
+    }
+
+    static async updateUser(req) {
+        try {
+            let filter = { _id: ObjectId(req.body._id) };
+            parms = {}
+            if (req.body.addchecklist) { parms.checklists = req.body.addchecklist }
+            const updateResponse = await users.updateOne( filter, { $push: parms });
+            return updateResponse;
+        }
+        catch (e) {
+            console.error(`Unable to update checklist: ${e}`);
+            return { error: e };
         }
     }
 }

@@ -5,7 +5,7 @@ export default class ChecklistsController {
     static async apiPostChecklist(req, res, next) {
         try {
             const checklistResponse = await checklistsDAO.addChecklist(req);
-            res.json({ status: "success" });
+            res.json(checklistResponse);
         }
         catch (e) {
             res.status(500).json({ error: e.message });

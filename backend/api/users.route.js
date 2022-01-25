@@ -11,7 +11,7 @@ router.route('/id/:id').get(usersCtrl.apiGetUserById);
 router.route('/pid/:id').get(usersCtrl.apiGetUserByPId);
 router.post('/user-add', usersCtrl.apiPostUser)
 // router.delete('/user-delete', usersCtrl.apiDeleteUser)
-// router.put('/user-update', usersCtrl.apiUpdateUser)
+router.put('/user-update', usersCtrl.apiUpdateUser)
 
 router.route('/id/:id/checklist/:checklist_id').get(checklistsCtrl.apiGetChecklistById);
 

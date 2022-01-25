@@ -2,21 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './Checklists.css';
 import Checklist from './Checklist';
-import Listitem from './Listitem';
-import UserDataService from '../services/checklist-service';
-import ChecklistDataService from '../services/checklist-service';
-import TaskDataService from '../services/task-service';
+import UserDataService from '../services/user-service';
 
 function Checklists(props) {
 
     
     const [user, setUser] = useState({});
     useEffect(() => {
-        axios.get(`http://localhost:5000/users/id/${props.user._id}`)
+        UserDataService.get(props.user._id)
         .then(function(res) { setUser(res.data); })
     }, []);
-    
-    let checklists;
+
+    let checklists = null;
     if (user.checklists) {        
         checklists = (
             <div>
@@ -25,10 +22,6 @@ function Checklists(props) {
                 ))}
             </div>
         )
-        
-    }
-    else {
-        checklists = null;
     }
 
     return(

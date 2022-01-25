@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Listitem from './Listitem';
 
+import ChecklistDataService from '../services/checklist-service';
+
 function Checklist(props) {
     let user = props.user;
 
     const [checklist, setChecklist] = useState({});
     useEffect(() => {
-        axios.get(`http://localhost:5000/users/id/${props.user._id}/checklist/${props.checklist._id}`)
+        ChecklistDataService.get({userId: props.user._id, checklistId: props.checklist._id})
         .then(function(res) { setChecklist(res.data); })
     }, []);
-
+    
     let listitems = null;
     if (checklist.tasks) {
         listitems = (

@@ -2,15 +2,15 @@ import http from '../http-common';
 
 class UserDataService {
     get(id) {
-        return http.get(`/users/id/${id}`);
+        return http.get(`users/id/${id}`);
     }
 
     createUser(data) {
-        return http.post("/users/user-add", data);
+        return http.post("users/user-add", data);
     }
 
     updateUser(data) {
-        return http.put("/users/user-update", data);
+        return http.put("users/user-update", data);
     }
 
     deleteUser(id, userId) {

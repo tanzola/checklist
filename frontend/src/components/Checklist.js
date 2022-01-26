@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import Listitem from './Listitem';
 
 import ChecklistDataService from '../services/checklist-service';

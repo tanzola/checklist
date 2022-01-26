@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import ChecklistDataService from '../services/checklist-service';
 import './Listitem.css'
 
 function Listitem(props) {

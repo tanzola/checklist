@@ -15,7 +15,6 @@ export default class ChecklistsDAO {
 
     static async addChecklist(req) {
         try {
-            req.body.items.map(item => ( item.key = ObjectId() ))
             parms = {
                 userId: ObjectId(req.body.userId),
                 name: req.body.name

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import './Checklists.css';
 import Checklist from './Checklist';
 import UserDataService from '../services/user-service';

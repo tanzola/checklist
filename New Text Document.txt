@@ -1,1 +1,0 @@
-hide 404 errors (check if routes are visible - hide)

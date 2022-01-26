@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import UserDataService from './services/user-service';
+import ChecklistDataService from './services/checklist-service';
 import Navbar from './components/Navbar';
 import Login from './pages/Login'
 import Home from './pages/Home'
 import './App.css';
-import UserDataService from './services/user-service';
-import ChecklistDataService from './services/checklist-service';
 
 function App() {
 
@@ -28,7 +27,7 @@ function App() {
                 throw new Error("authentication has failed!");
             })
             .then((resObject) => { setLoggedUser(resObject.user); })
-            .catch((err) => { console.log(err); });
+            .catch((e) => { console.log(e); });
         };
         getLoggedUser();
     }, []);
@@ -54,7 +53,7 @@ function App() {
                         UserDataService.createUser({ name: name, pid: userPID })
                         .then((function(resCreateUser) {
                             try {
-                                ChecklistDataService.createChecklist({ userId: resCreateUser.data.insertedId, name: "New Checklist", items:[{/*DELETE KEY FROM CLDAO-ADD*/}] })
+                                ChecklistDataService.createChecklist({ userId: resCreateUser.data.insertedId, name: "New Checklist" })
                             } catch (e) { console.log(`failed to create checklist for new user, ${e}`) }
                         }));
                     } catch (e) { console.log(`error creating new user in App, ${e}`) }
@@ -62,7 +61,7 @@ function App() {
             }
         } catch (e) { console.log(`error getting user in App, ${e}`)}
     }, [loggedUser]);
-    
+
     return (
         <div>
             <Router>

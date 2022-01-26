@@ -1,11 +1,6 @@
 import { NavLink } from "react-router-dom";
 import './Navbar.css';
 
-const links = [
-    { name: "Home", path: "/" },
-    { name: "Login", path: "/login" }
-];
-
 function Navbar(props) {
 
     function displayName() {

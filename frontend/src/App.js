@@ -38,7 +38,7 @@ function App() {
         try {
             if(loggedUser != null) {
                 let userPID = loggedUser.provider + loggedUser.id;
-                axios.get(`http://localhost:5000/users/pid/${userPID}`, userPID)
+                UserDataService.getByPID(userPID)
                 .then(function(resUser) { setUser(resUser.data); })
                 .catch( (e) => {
                     try {

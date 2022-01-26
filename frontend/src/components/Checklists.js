@@ -9,7 +9,7 @@ function Checklists(props) {
     
     const [user, setUser] = useState({});
     useEffect(() => {
-        UserDataService.get(props.user._id)
+        UserDataService.getById(props.user._id)
         .then(function(res) { setUser(res.data); })
     }, []);
 

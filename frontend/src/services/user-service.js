@@ -1,8 +1,12 @@
 import http from '../http-common';
 
 class UserDataService {
-    get(id) {
+    getById(id) {
         return http.get(`users/id/${id}`);
+    }
+
+    getByPID(pid) {
+        return http.get(`users/pid/${pid}`);
     }
 
     createUser(data) {

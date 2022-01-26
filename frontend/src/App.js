@@ -54,7 +54,7 @@ function App() {
                         UserDataService.createUser({ name: name, pid: userPID })
                         .then((function(resCreateUser) {
                             try {
-                                ChecklistDataService.createChecklist({ user_id: resCreateUser.data.insertedId, name: "New Checklist", items:[{/*DELETE KEY FROM CLDAO-ADD*/}] })
+                                ChecklistDataService.createChecklist({ userId: resCreateUser.data.insertedId, name: "New Checklist", items:[{/*DELETE KEY FROM CLDAO-ADD*/}] })
                             } catch (e) { console.log(`failed to create checklist for new user, ${e}`) }
                         }));
                     } catch (e) { console.log(`error creating new user in App, ${e}`) }

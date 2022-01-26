@@ -14,7 +14,7 @@ class UserDataService {
     }
 
     deleteUser(id, userId) {
-        return http.delete(`users/user-delete`, { data: { _id: id, user_id: userId } });
+        return http.delete(`users/user-delete`, { data: { _id: id, userId: userId } });
     }
 }
 

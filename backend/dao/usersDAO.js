@@ -52,7 +52,7 @@ export default class usersDAO {
                     $lookup: {
                         from: "checklists",
                         let: { id: "$_id", },
-                        pipeline: [{ $match: { $expr: { $eq: ["$user_id", "$$id"] } } }],
+                        pipeline: [{ $match: { $expr: { $eq: ["$userId", "$$id"] } } }],
                         as: "checklists"
                     }
                 },
@@ -78,7 +78,7 @@ export default class usersDAO {
             return await users.aggregate(pipeline).next();
         }
         catch (e) {
-            console.error(`Something went wrong in getUsersByID: ${e}`);
+            console.error(`Something went wrong in getUsersByPID: ${e}`);
             throw e;
         }
     }

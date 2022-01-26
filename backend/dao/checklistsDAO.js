@@ -3,7 +3,7 @@ const ObjectId = mongodb.ObjectId;
 
 let parms;
 let checklists;
-let checklist_id;
+let checklistId;
 
 export default class ChecklistsDAO {
 
@@ -17,7 +17,7 @@ export default class ChecklistsDAO {
         try {
             req.body.items.map(item => ( item.key = ObjectId() ))
             parms = {
-                user_id: ObjectId(req.body.user_id),
+                userId: ObjectId(req.body.userId),
                 name: req.body.name
             };
             const addResponse = await checklists.insertOne(parms);
@@ -31,13 +31,13 @@ export default class ChecklistsDAO {
 
     static async updateChecklist(req) {
         try {
-            checklist_id = { user_id: ObjectId(req.body.user_id), _id: ObjectId(req.body._id) };
+            checklistId = { userId: ObjectId(req.body.userId), _id: ObjectId(req.body._id) };
             req.body.items.map(item => ( item.key = ObjectId(item.key) ));
             parms = {
                 name: req.body.name,
                 items: req.body.items
             }
-            const updateResponse = await checklists.updateOne( checklist_id, { $set: parms });
+            const updateResponse = await checklists.updateOne( checklistId, { $set: parms });
             return updateResponse;
         }
         catch (e) {
@@ -48,8 +48,8 @@ export default class ChecklistsDAO {
 
     static async deleteChecklist(req) {
         try {
-            checklist_id = { user_id: ObjectId(req.body.user_id), _id: ObjectId(req.body._id) };
-            const deleteResponse = await checklists.deleteOne(checklist_id);
+            checklistId = { userId: ObjectId(req.body.userId), _id: ObjectId(req.body._id) };
+            const deleteResponse = await checklists.deleteOne(checklistId);
             return deleteResponse;
         }
         catch (e) {
@@ -58,20 +58,20 @@ export default class ChecklistsDAO {
         }
     }
 
-    static async getChecklistByID(user_id, checklist_id) {
+    static async getChecklistByID(userId, checklistId) {
         try {
             const pipeline = [
                 {
                     $match: { 
-                        _id: new ObjectId(checklist_id),
-                        user_id: new ObjectId(user_id)
+                        _id: new ObjectId(checklistId),
+                        userId: new ObjectId(userId)
                      }
                 },
                 {
                     $lookup: {
                         from: "tasks",
                         let: { id: "$_id", },
-                        pipeline: [{ $match: { $expr: { $eq: ["$checklist_id", "$$id"] } } }],
+                        pipeline: [{ $match: { $expr: { $eq: ["$checklistId", "$$id"] } } }],
                         as: "tasks"
                     }
                 },

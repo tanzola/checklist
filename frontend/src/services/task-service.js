@@ -14,7 +14,7 @@ class TaskDataService {
     }
 
     deleteTask(id, userId) {
-        return http.delete(`users/task-delete`, { data: { _id: id, user_id: userId } });
+        return http.delete(`users/task-delete`, { data: { _id: id, userId: userId } });
     }
 }
 

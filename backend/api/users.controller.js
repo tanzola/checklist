@@ -50,10 +50,10 @@ export default class usersController {
         }
     }
 
-    static async apiGetUserByPId(req, res, next) {
+    static async apiGetUserByPID(req, res, next) {
         try {
-            let id = req.params.id || {};
-            let user = await usersDAO.getUserByPID(id);
+            let pid = req.params.pid || {};
+            let user = await usersDAO.getUserByPID(pid);
             if (!user) {
                 res.status(404).json({ error: "Not found" });
                 return;

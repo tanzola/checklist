@@ -37,9 +37,9 @@ export default class TasksController {
 
     static async apiGetTaskById(req, res, next) {
         try {
-            let user_id = req.params.id || {};
-            let checklist_id = req.params.checklist_id
-            let tasks = await tasksDAO.getTaskByID(user_id, checklist_id);
+            let userId = req.params.id || {};
+            let checklistId = req.params.checklistId
+            let tasks = await tasksDAO.getTaskByID(userId, checklistId);
             if (!tasks) {
                 res.json({});
                 return;

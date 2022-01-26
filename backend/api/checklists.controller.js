@@ -37,9 +37,9 @@ export default class ChecklistsController {
 
     static async apiGetChecklistById(req, res, next) {
         try {
-            let user_id = req.params.id || {};
-            let checklist_id = req.params.checklist_id
-            let checklist = await checklistsDAO.getChecklistByID(user_id, checklist_id);
+            let userId = req.params.id || {};
+            let checklistId = req.params.checklistId
+            let checklist = await checklistsDAO.getChecklistByID(userId, checklistId);
             if (!checklist) {
                 res.status(404).json({ error: "Not found" });
                 return;

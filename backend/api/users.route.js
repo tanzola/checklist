@@ -8,12 +8,12 @@ const router = express.Router();
 router.route('/').get(usersCtrl.apiGetUsers);
 router.route('/id/:id').get(usersCtrl.apiGetUserById);
 
-router.route('/pid/:id').get(usersCtrl.apiGetUserByPId);
+router.route('/pid/:pid').get(usersCtrl.apiGetUserByPID);
 router.post('/user-add', usersCtrl.apiPostUser)
 // router.delete('/user-delete', usersCtrl.apiDeleteUser)
 router.put('/user-update', usersCtrl.apiUpdateUser)
 
-router.route('/id/:id/checklist/:checklist_id').get(checklistsCtrl.apiGetChecklistById);
+router.route('/id/:id/checklist/:checklistId').get(checklistsCtrl.apiGetChecklistById);
 
 router.post('/checklist-add', checklistsCtrl.apiPostChecklist)
 router.delete('/checklist-delete', checklistsCtrl.apiDeleteChecklist)

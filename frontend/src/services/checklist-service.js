@@ -14,7 +14,7 @@ class ChecklistDataService {
     }
 
     deleteChecklist(id, userId) {
-        return http.delete(`users/checklist-delete`, { data: { _id: id, user_id: userId } });
+        return http.delete(`users/checklist-delete`, { data: { _id: id, userId: userId } });
     }
 }
 

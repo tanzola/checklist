@@ -1,115 +1,85 @@
-:root {
-    --checkbox-size: 40px;
-    --li-rounding: 3px;
-    --li-width: 250px;
-    --col-ghosted: #f7f7f7;
-    --col-ghosted-border: rgb(225, 225, 225);
-    --col-border: #c4c4c4;
+.listitem {
+    background-color: var(--color-darker);
+    color: var(--text-color-light);
+    pointer-events: none;
+    display: flex;
+    height: var(--li-height);
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: var(--col-border);
+    pointer-events: visible;
+    cursor: pointer;
 }
 
-.listitem {
-    margin: auto;
-    padding: 3px;
-    height: auto;
-    width: var(--li-width);
-    max-width: var(--li-width);
-    display: flex;
-    filter: drop-shadow(1px 1px 5px #00000010);
+.listitem:last-child {
+    border-bottom: none;
 }
 
 .preexisting {
     height: 10px;
     width: 100%;
-    border-radius: var(--li-rounding);
-    background-color: var(--col-ghosted);
-    border-color: var(--col-ghosted-border);
-    border-width: 1px;
     border-style: solid;
+    border-radius: var(--cl-rounding);
+    border-width: 1px;
     margin-top: 5px;
 }
 
-.box_check {
-    height: var(--checkbox-size);
-    width: var(--checkbox-size);
-    min-width: var(--checkbox-size);
-    border-radius: var(--li-rounding) 0 0 var(--li-rounding);
-    border-style: solid;
-    border-width: 1px;
-    border-right-width: 0px;
-    border-color: var(--col-border);
+.checkmark {
+    float: left;
+    cursor: pointer;
+    pointer-events: auto;
+    height: var(--checkmark-size);
+    width: var(--checkmark-size);
+    min-width: var(--checkmark-size);
+    margin: auto var(--checkmark-margin-x);
+    border-radius: var(--checkmark-radius);
 }
 
 .checked {
-    background-color: #44ca66;
+    background-color: var(--checked-color);
 }
 
 .unchecked {
-    background-color: #F4B400;
+    background-color: var(--unchecked-color);
+}
+
+.delete-button {
+    width: var(--delete-button-width);
+    margin: auto var(--delete-button-margin-right) auto auto;
 }
 
 .box_text {
-    height: var(--checkbox-size);
     width: 100%;
-    max-width: calc(100% - var(--checkbox-size) - 2px);
-    border-radius: 0 var(--li-rounding) var(--li-rounding) 0;
-    border-style: solid;
-    border-width: 1px;
-    border-left-width: 0px;
-    border-color: var(--col-border);
+    max-width: calc(100% - var(--checkmark-size) * 2 - var(--checkmark-margin-x) - var(--delete-button-width) - var(--delete-button-margin-right));
+    display: flex;
+    background-color: var(--color-darker);
 }
 
-.typing {
-    background-color: whitesmoke;
-}
-
-.typed {
-    background-color: #f3f3f3;
+.box_text p {
+    margin: auto 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .iteminput {
-    background-color: white;
-    width: calc(100% - 20px);
-    max-width: calc(100% - 20px);
-    text-align: left;
-    font-size:medium;
-    margin-left: -1px;
-    padding-bottom: 3px;
-    padding-left: 3px;
-    outline-style: none;
-    outline-color: rgb(237, 237, 237);
-    outline-width: 0px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #dadada;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    background-color: var(--color-darker);
+    color: var(--text-color-lightest);
+    font-family: 'Montserrat';
+    font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-.itemtext {
-    -ms-transform: translateY(-40%);
-    transform: translateY(-40%);
-    max-width: 100%;
-    overflow: hidden;
+    width: calc(100% - 5px);
+    height: 25px;
     text-align: left;
-    padding: 0 10px 0 10px;
-}
+    margin-left: -2px;
+    outline-style: none;
+    border-style: none;
 
-.itemtext:before {
-    content:'';
-    width:100%;
-    height: 40px;
-    overflow: visible;
-    position:absolute;
-    left:0;
-    top:0;
-    background:linear-gradient(to right, transparent calc(var(--li-width) - var(--checkbox-size) - var(--checkbox-size)), #f3f3f3);
-  }
+}
 
 .textform {
-    -ms-transform: translateY(22%);
-    transform: translateY(22%);
-    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: calc(var(--li-height) / 2 - 14px) 0;
 }

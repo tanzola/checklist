@@ -16,30 +16,26 @@ function Navbar(props) {
         window.open("http://localhost:5000/auth/logout", "_self");
     };
 
+
+    console.log(props.user);
     const userinfo = (
-        props.user ? (
-            <>
-                <li className="nav-list-item">
-                    <img
-                        src={props.user.photos[0].value}
-                        alt=""
-                        className="avatar">
-                    </img>
-                </li>
-                {/* <li className="nav-list-item">{displayName()}</li> */}
-                <li className="nav-list-item nav-text" onClick={logout}>Logout</li>
-            </>
-        ) : (
-            <NavLink to="/login" className="nav-list-item nav-text">Login</NavLink>
-        )
+        props.user ?
+            <ul className="nav-list">
+                <li><img src={props.user.photos[0].value} alt="" className="avatar" /></li>
+                <li className="nav-text" onClick={logout}>Logout</li>
+            </ul>
+        : <NavLink to="/login" className="nav-text">Sign in</NavLink>
+        
     );
 
     return (
         <div className="navbar">
-            <span className="logo" style={{marginBottom: "3px"}}><NavLink to="/" className="nav-list-item">Checklists</NavLink></span>
-            <ul className="nav-list">
+            <div className="nav-elem">
+                <NavLink to="/" className="logo nav-text">xTask</NavLink>
+            </div>
+            <div className="nav-elem">
                 {userinfo}
-            </ul>
+            </div>
         </div>
     )
 }

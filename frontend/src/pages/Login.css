@@ -1,39 +1,46 @@
-.login {
+.login-page {
+    height: calc(100vh - var(--navbar-height) - 1px);
     display: flex;
-    flex-direction: column;
+    -webkit-box-align: center;
     align-items: center;
+    flex-direction: column;
 }
 
-.wrapper {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    width: auto;
-    height: auto;
-    padding: 23px 80px 23px 80px;
-    background-color: white;
+.login-container {
+    margin-top: 8px;
 }
 
 .login-button {
-    width: 150px;
-    padding: 15px 25px;
-    border-radius: 3px;
+    border-radius: 50px;
     color: white;
     display: flex;
     align-items: center;
     font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     cursor: pointer;
-  }
-
-.google {
-    background-color: #df4930;
+    background-color: var(--color-darker);
+    border-style: solid;
+    border-color: #3f4447;
+    border-width: 1px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3px 40px;
+    white-space: nowrap;
+    transition-duration: 0.1s;
 }
 
-.github {
-    background-color: black;
+.login-button:hover {
+    background-color: var(--color-dark);
+}
+
+.login-button-elem {
+    font-size: 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
 }
 
 .icon {

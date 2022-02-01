@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Listitem from './Listitem';
-
 import ChecklistDataService from '../services/checklist-service';
+import './Checklist.css';
 
 function Checklist(props) {
     let user = props.user;
@@ -19,7 +19,7 @@ function Checklist(props) {
                 <Listitem
                     exists={true}
                     user={user}
-                    item={task}
+                    task={task}
                     checklist={checklist}
                     text={task.text}
                     checked={task.status}
@@ -32,10 +32,10 @@ function Checklist(props) {
 
     return (
         <>
-            <div className="checklist shadow" key={checklist._id}>
-                <div>{checklist.name}</div>
+            <div className="checklist" key={checklist._id}>
+                <div className="checklist-title"><p>{checklist.name}</p></div>
                 {listitems}
-                <Listitem exists={false} text={""} checked={false} typing={true} key={0} />
+                {/* <Listitem exists={false} text={""} checked={false} typing={true} key={0} /> */}
             </div>
         </>
     )

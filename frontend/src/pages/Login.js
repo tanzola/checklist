@@ -1,5 +1,5 @@
-import Google from '../img/google.png';
-import Github from '../img/github.png';
+import Google from '../img/google.svg';
+import Github from '../img/github.svg';
 import './Login.css';
 
 function Login() {
@@ -13,16 +13,19 @@ function Login() {
     };
 
     return (
-        <div className="login">
-            <h1 className="login-title">Choose a Login Method</h1>
-            <div className="wrapper shadow">
-                <div className="login-button google" onClick={google}>
-                    <img src={Google} alt="" className="icon"></img>
-                    Google
+        <div className="login-page">
+            <div className="login-container">
+                <div className="login-button" onClick={google}>
+                    <div className="login-button-elem">
+                        <img src={Google} alt="" className="icon"></img>
+                        <p>Sign in with Google</p>
+                    </div>
                 </div>
-                <div className="login-button github" onClick={github}>
-                    <img src={Github} alt="" className="icon"></img>
-                    Github
+                <div className="login-button" onClick={github}>
+                    <div className="login-button-elem">
+                        <img src={Github} alt="" className="icon"></img>
+                        <p>Sign in with Github</p>
+                    </div>
                 </div>
             </div>
         </div>

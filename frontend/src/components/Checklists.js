@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import './Checklists.css';
 import Checklist from './Checklist';
 import UserDataService from '../services/user-service';
 
@@ -15,16 +14,16 @@ function Checklists(props) {
     let checklists = null;
     if (user.checklists) {        
         checklists = (
-            <div>
+            <>
                 {user.checklists.map(checklist => (
                     <Checklist user={user} checklist={checklist} key={checklist._id} />
                 ))}
-            </div>
+            </>
         )
     }
 
     return(
-        <div>{checklists}</div>
+        <>{checklists}</>
     )
 }
 

@@ -35,12 +35,19 @@
     border-radius: var(--checkmark-radius);
 }
 
-.checked {
-    background-color: var(--checked-color);
+.stage-0 {
+    width: inherit;
+    background-color: var(--check-stage-0);;
 }
 
-.unchecked {
-    background-color: var(--unchecked-color);
+.stage-1 {
+    width: inherit;
+    background-color: var(--check-stage-1);
+}
+
+.stage-2 {
+    width: inherit;
+    background-color: var(--check-stage-2);
 }
 
 .delete-button {

@@ -20,7 +20,7 @@ export default class TasksDAO {
                     userId: ObjectId(req.body.userId),
                     checklistId: ObjectId(req.body.checklistId),
                     text: req.body.text,
-                    status: req.body.status
+                    stage: req.body.stage
                 }
             );
             return addResponse;
@@ -39,7 +39,7 @@ export default class TasksDAO {
                 {
                     $set: {
                         text: req.body.text,
-                        status: req.body.status
+                        stage: req.body.stage
                     }
                 }
             );

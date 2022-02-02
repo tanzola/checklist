@@ -21,8 +21,6 @@ function Checklist(props) {
                     user={user}
                     task={task}
                     checklist={checklist}
-                    text={task.text}
-                    checked={task.status}
                     typing={false}
                     key={task._id}
                 />

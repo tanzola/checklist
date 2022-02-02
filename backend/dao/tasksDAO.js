@@ -2,7 +2,7 @@ import mongodb from 'mongodb';
 const ObjectId = mongodb.ObjectId;
 
 let tasks;
-let task_id;
+let taskId;
 
 export default class TasksDAO {
 
@@ -17,8 +17,8 @@ export default class TasksDAO {
             const addResponse = await tasks.insertOne(
                 {
                     _id: ObjectId(),
-                    user_id: ObjectId(req.body.user_id),
-                    checklist_id: ObjectId(req.body.checklist_id),
+                    userId: ObjectId(req.body.userId),
+                    checklistId: ObjectId(req.body.checklistId),
                     text: req.body.text,
                     status: req.body.status
                 }
@@ -33,14 +33,13 @@ export default class TasksDAO {
 
     static async updateTask(req) {
         try {
-            task_id = { user_id: ObjectId(req.body.user_id), _id: ObjectId(req.body._id) };
-            req.body.items.map(item => ( item.key = ObjectId(item.key) ));
+            taskId = { userId: ObjectId(req.body.userId), _id: ObjectId(req.body._id) };
             const updateResponse = await tasks.updateOne(
-                task_id,
+                taskId,
                 {
                     $set: {
-                        name: req.body.name,
-                        items: req.body.items
+                        text: req.body.text,
+                        status: req.body.status
                     }
                 }
             );
@@ -54,8 +53,8 @@ export default class TasksDAO {
 
     static async deleteTask(req) {
         try {
-            task_id = { user_id: ObjectId(req.body.user_id), _id: ObjectId(req.body._id) };
-            const deleteResponse = await tasks.deleteOne(task_id);
+            taskId = { userId: ObjectId(req.body.userId), _id: ObjectId(req.body._id) };
+            const deleteResponse = await tasks.deleteOne(taskId);
             return deleteResponse;
         }
         catch (e) {

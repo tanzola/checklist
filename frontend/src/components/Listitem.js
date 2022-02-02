@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { TextInput } from 'react-native-web';
 import imgAdd from '../img/add.svg';
 import imgDelete from '../img/delete.svg';
+import TaskDataService from '../services/task-service';
 import './Listitem.css'
 
 function Listitem(props) {
     const [exists, setExists] = useState(props.exists);
     const [isChecked, setCheck] = useState(props.checked);
+    const [taskText, settaskText] = useState(props.text);
     const [isTyping, setTyping] = useState(props.typing);
-    const [itemText, setItemText] = useState(props.text);
     const [ogText, setOgText] = useState(props.text);
     
     /*
@@ -23,25 +25,24 @@ function Listitem(props) {
     }
     */
 
-    function submitText(itemText) {
+    function updateTask(taskText, taskStatus) {
         console.log(props.task);
-        /*
         try {
             TaskDataService.updateTask(
                 {
-                    _id: '61edc11d4acf3cdb46935a1a',
-                    user_id: user._id,
-                    name: thischecklist.name,
-                    items: thischecklist.items
+                    _id: props.task._id,
+                    userId: props.user._id,
+                    text: taskText,
+                    status: taskStatus
                 }
-            )
+            );
         }
-        catch {
-            console.log("Failed update")
-        }
-        */
+        catch { console.log("Failed update"); }
     }
 
+    const checkmark = <div className={isChecked ? "checkmark checked" : "checkmark unchecked"} onClick={() => { setCheck(!isChecked); }} />;
+    const deleteButton = <img className="delete-button" src={imgDelete} alt="" />;
+    const box_preexisting = <div className="preexisting" onClick={() => setExists(!exists)} />;
     const box_text_typing = (
         <div className="box_text typing">
             <form
@@ -52,8 +53,8 @@ function Listitem(props) {
                 }}
                 onSubmit={(e) => {
                     setTyping(!isTyping);
-                    if (itemText !== ogText) {
-                        submitText(e.target.value);
+                    if (taskText !== ogText) {
+                        // updateTask(e.target.value, isChecked);
                         setOgText(e.target.value);
                         console.log('submit');
                     }
@@ -61,8 +62,8 @@ function Listitem(props) {
             >
                 <input
                     type="text"
-                    value={itemText}                    
-                    onChange={(e) => { setItemText(e.target.value); }}
+                    value={taskText}                    
+                    onChange={(e) => { settaskText(e.target.value); }}
                     onBlur={() => {
                         setTyping(!isTyping);
                         console.log("onBlur");
@@ -74,29 +75,11 @@ function Listitem(props) {
             </form>
         </div>
     );
-    
-    
     const box_text_typed = (
         <div className="box_text typed" onClick={() => setTyping(!isTyping)}>
-            <p>{itemText}</p>
+            <p>{taskText}</p>
         </div>
-    )
-    const checkmark = (
-        <div
-            className={isChecked ? "checkmark checked" : "checkmark unchecked"} 
-            onClick={() => { setCheck(!isChecked); }}
-        />
     );
-
-    const deleteButton = (
-        <img className="delete-button" src={imgDelete} alt='X' />
-    );
-
-    
-    const box_preexisting = (
-            <div className="preexisting" onClick={() => setExists(!exists)} />
-    );
-
     const box_existing = (
         <div className="listitem">
             {checkmark}
@@ -105,16 +88,7 @@ function Listitem(props) {
         </div>
     );
     
-
-    const testBox = (
-        <div className='testbox' />
-    );
-    
-    return(
-        <>
-            {exists ? box_existing : box_preexisting}
-        </>
-    );
+    return <>{exists ? box_existing : box_preexisting}</>;
 }
 
 export default Listitem;

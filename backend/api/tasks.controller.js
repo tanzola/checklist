@@ -15,6 +15,7 @@ export default class TasksController {
     static async apiUpdateTask(req, res, next) {
         try {
             const taskResponse = await tasksDAO.updateTask(req);
+            console.log(taskResponse);
             var { error } = taskResponse;
             if (error) { res.status(400).json({ error }); }
             if (taskResponse.modifiedCount === 0) { throw new Error("unable to update task - user may not be original poster"); }

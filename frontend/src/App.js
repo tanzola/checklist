@@ -63,17 +63,13 @@ function App() {
     }, [loggedUser]);
 
     return (
-        <>
-            
-            
-            <Router className='router'>
-                <Navbar user={loggedUser} />
-                <Routes>
-                    <Route path="/login" element={loggedUser ? <Navigate to="/" /> : <Login />} />
-                    <Route path="/" element={<Home user={user} />} />
-                </Routes>
-            </Router>
-        </>
+        <Router className='router'>
+            <Navbar user={loggedUser} />
+            <Routes>
+                <Route path="/login" element={loggedUser ? <Navigate to="/" /> : <Login />} />
+                <Route path="/" element={<Home user={user} />} />
+            </Routes>
+        </Router>
     );
 }
 

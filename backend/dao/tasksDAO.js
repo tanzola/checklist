@@ -62,4 +62,22 @@ export default class TasksDAO {
             return { error: e };
         }
     }
+
+    static async getTaskByID(userId, _id) {
+        try {
+            const pipeline = [
+                {
+                    $match: { 
+                        _id: new ObjectId(_id),
+                        userId: new ObjectId(userId)
+                     }
+                }
+            ];
+            return await tasks.aggregate(pipeline).next();
+        }
+        catch (e) {
+            console.error(`Something went wrong in getTasksByID: ${e}`);
+            throw e;
+        }
+    }
 }

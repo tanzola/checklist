@@ -33,6 +33,7 @@
     min-width: var(--checkmark-size);
     margin: auto var(--checkmark-margin-x);
     border-radius: var(--checkmark-radius);
+    overflow: hidden;
 }
 
 .stage-0 {

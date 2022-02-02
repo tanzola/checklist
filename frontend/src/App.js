@@ -51,11 +51,11 @@ function App() {
                             default: name = null;
                         }
                         UserDataService.createUser({ name: name, pid: userPID })
-                        .then((function(resCreateUser) {
+                        .then(function(resCreateUser) {
                             try {
                                 ChecklistDataService.createChecklist({ userId: resCreateUser.data.insertedId, name: "New Checklist" })
                             } catch (e) { console.log(`failed to create checklist for new user, ${e}`) }
-                        }));
+                        });
                     } catch (e) { console.log(`error creating new user in App, ${e}`) }
                 });
             }

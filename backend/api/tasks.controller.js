@@ -34,21 +34,4 @@ export default class TasksController {
             res.status(500).json({ error: e.message });
         }
     }
-
-    static async apiGetTaskById(req, res, next) {
-        try {
-            let userId = req.params.id || {};
-            let checklistId = req.params.checklistId
-            let tasks = await tasksDAO.getTaskByID(userId, checklistId);
-            if (!tasks) {
-                res.json({});
-                return;
-            }
-            res.json(tasks);
-        }
-        catch (e) {
-            console.log(`api, ${e}`);
-            res.status(500).json({ error: e });
-        }
-    }
 }

@@ -1,1 +1,5 @@
 hide 404 errors (check if routes are visible - hide)
+
+move appending of [userId to new checklists, checklistId to new tasks] to backend
+
+remove db info from responses

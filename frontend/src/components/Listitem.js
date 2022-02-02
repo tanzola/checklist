@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import imgAdd from '../img/add.svg';
 import imgStage0 from '../img/taskStage-0.svg'
 import imgStage1 from '../img/taskStage-1.svg'
@@ -7,16 +7,38 @@ import imgDelete from '../img/delete.svg';
 import TaskDataService from '../services/task-service';
 import './Listitem.css';
 
-const taskStages = [imgStage0, imgStage1, imgStage2];
+const imgStages = [imgStage0, imgStage1, imgStage2];
 
 function Listitem(props) {
     const [exists, setExists] = useState(props.exists);
-    const [taskStage, setTaskStage] = useState(props.task.stage);
-    const [taskText, setTaskText] = useState(props.task.text);
+    const [isNew, setNew] = useState(props.isNew);
+    const [taskStage, setTaskStage] = useState(props.taskStage);
+    const [taskText, setTaskText] = useState(props.text);
     const [isTyping, setTyping] = useState(props.typing);
-    const [ogText, setOgText] = useState(props.task.text);
+    const [ogText, setOgText] = useState(props.text);
 
     function updateTask(data) {
+        if (isNew) {
+            if (data.stage !== undefined) { return; }
+            if (data.text === undefined || !data.text.replace(/\s/g, "").length) {
+                setTaskText("");
+                setExists(false);
+                return;
+            }
+            else {
+                try {
+                    TaskDataService.createTask(
+                        {
+                            userId: props.user._id,
+                            checklistId: props.checklist._id,
+                            text: data.text,
+                            stage: 0
+                        }
+                    ).then(props.addTask);
+                } catch (e) { console.log(`Failed create task, ${e}`); }
+                return;
+            }
+        }
         if (data.text !== undefined) {
             setTyping(false);
             if (data.text == ogText) { return; }
@@ -36,12 +58,11 @@ function Listitem(props) {
                     stage: data.stage !== undefined ? data.stage : taskStage
                 }
             );
-        }
-        catch { console.log("failed to update task"); }
+        } catch { console.log("failed to update task"); }
     }
 
-    const checkmark = <div className={`checkmark`} onClick={() => { updateTask({ stage: (taskStage + 1) % 3 }) }}>
-        <img src={taskStages[taskStage]} style={{ width: "100%" }} />
+    const checkmark = <div className={`checkmark`} onClick={() => updateTask({ stage: (taskStage + 1) % 3 })}>
+        <img src={imgStages[taskStage]} className={"unselectable"} style={{ width: "100%" }} />
     </div>;
     const deleteButton = <img className="delete-button unselectable" src={imgDelete} alt="" />;
     const box_preexisting = <div className="preexisting" onClick={() => setExists(!exists)} />;

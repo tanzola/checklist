@@ -16,8 +16,6 @@ function Navbar(props) {
         window.open("http://localhost:5000/auth/logout", "_self");
     };
 
-
-    console.log(props.user);
     const userinfo = (
         props.user ?
             <ul className="nav-list">

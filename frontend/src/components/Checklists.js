@@ -4,7 +4,6 @@ import UserDataService from '../services/user-service';
 
 function Checklists(props) {
 
-    
     const [user, setUser] = useState({});
     useEffect(() => {
         UserDataService.getById(props.user._id)

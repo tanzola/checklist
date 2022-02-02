@@ -32,7 +32,7 @@ function Listitem(props) {
     }
 
     const checkmark = <div className={isChecked ? "checkmark checked" : "checkmark unchecked"} onClick={() => { setCheck(!isChecked); }} />;
-    const deleteButton = <img className="delete-button" src={imgDelete} alt="" />;
+    const deleteButton = <img className="delete-button unselectable" src={imgDelete} alt="" />;
     const box_preexisting = <div className="preexisting" onClick={() => setExists(!exists)} />;
     const textInput = (
         <div className="input-container">
@@ -46,8 +46,8 @@ function Listitem(props) {
         </div>
     )
     const textTyped = (
-        <div className="box_text typed" onClick={() => setTyping(!isTyping)}>
-            <p>{taskText}</p>
+        <div className="box-text typed" onClick={() => setTyping(true)}>
+            <p >{taskText}</p>
         </div>
     );
 

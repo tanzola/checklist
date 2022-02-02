@@ -48,14 +48,14 @@
     margin: auto var(--delete-button-margin-right) auto auto;
 }
 
-.box_text {
+.box-text {
     width: 100%;
     max-width: calc(100% - var(--checkmark-size) * 2 - var(--checkmark-margin-x) - var(--delete-button-width) - var(--delete-button-margin-right));
     display: flex;
     background-color: var(--color-darker);
 }
 
-.box_text p {
+.box-text p {
     margin: auto 0;
     overflow: hidden;
     white-space: nowrap;

@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Montserrat';
-        src: local('Montserrat'),
-        url('./fonts/Montserrat.ttf') format('truetype');
+    src: local('Montserrat'),
+    url('./fonts/Montserrat.ttf') format('truetype');
 }
 
 :root {
@@ -55,12 +55,16 @@ code {
     monospace;
 }
 
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+ }
+
 .page {
     height: calc(100vh - var(--navbar-height) - 1px);
-}
-
-.router {
-    height: 0;
 }
 
 .shadow {

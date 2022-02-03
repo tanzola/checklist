@@ -1,0 +1,22 @@
+.dropdown-menu {
+    position: absolute;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 2px;
+}
+
+.dropdown-item {
+    padding: 10px;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: var(--border-color-dark);
+    transition-duration: var(--speed-fast);
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: gray;
+}

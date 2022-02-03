@@ -17,6 +17,7 @@ function Checklists(props) {
                 {user.checklists.map(checklist => (
                     <Checklist user={user} checklist={checklist} key={checklist._id} />
                 ))}
+                {/* <Checklist user={user} checklist={null} key={checklist._id} /> */}
             </>
         )
     }

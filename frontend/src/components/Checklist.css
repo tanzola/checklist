@@ -1,4 +1,4 @@
-.checklist {
+.cl {
     background-color: var(--color-dark);
     color: var(--text-color-light);
     margin: 8px auto;
@@ -9,16 +9,28 @@
     border-width: 1px;
     font-size: 14px;
 }
-.checklist-title {
-    padding: 13px 15px;
+.cl-title {
+    cursor: pointer;
+    display: flex;
+    height: 40px;
     border-bottom-style: solid;
     border-color: #363a3c;
     border-width: 1px;
 }
 
-.checklist-title p {
+.cl-title p {
+    margin: auto 0 auto 15px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin: 0;
+    width: 100%;
+}
+
+.menu-container {
+    height: 20px;
+    overflow: hidden;
+    width: 20px;
+    margin: auto 13px auto 5px;
+    object-fit: cover;
+    right: 0;
 }

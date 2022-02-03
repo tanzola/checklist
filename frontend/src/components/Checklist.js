@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { NavItem } from "react-router-dom";
 import Listitem from './Listitem';
 import ChecklistDataService from '../services/checklist-service';
+import menuVert from '../img/menuVert.svg';
+import DropdownMenu from '../components/DropdownMenu'
 import './Checklist.css';
 
 function Checklist(props) {
@@ -66,8 +69,13 @@ function Checklist(props) {
     }, [checklist, user]);
     
     return (
-        <div className="checklist" key={checklist._id}>
-            <div className="checklist-title"><p>{checklist.name}</p></div>
+        <div className="cl" key={checklist._id}>
+            <div className="cl-title"><p>{checklist.name}</p>
+                <div className="menu-container">
+                    <DropdownMenu img={menuVert} size={"20px"} />
+                    {/* <img className="cl-menu unselectable" src={menuVert} /> */}
+                </div>
+            </div>
             {listitems}
         </div>
     )

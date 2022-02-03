@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import imgAdd from '../img/add.svg';
-import imgAddTask from '../img/addTask.svg';
 import imgStage0 from '../img/taskStage-0.svg'
 import imgStage1 from '../img/taskStage-1.svg'
 import imgStage2 from '../img/taskStage-2.svg'
@@ -75,7 +74,7 @@ function Listitem(props) {
             className={"checkmark unselectable"}
             onClick={() => updateTask({ stage: (taskStage + 1) % 3 })}
         >
-            <img src={imgStages[taskStage]}style={{ width: "100%" }} />
+            <img src={imgStages[taskStage]} style={{ width: "100%" }} />
         </div>
     )
 

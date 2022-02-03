@@ -21,7 +21,7 @@
     --navbar-height: 55px;
 
     --cl-color: #1b1d20;
-    --cl-width: 300px;
+    --cl-width: 375px;
     --cl-rounding: 3px;
     --cl-rounding: 3px;
     --cl-border-color: #25282a;
@@ -36,9 +36,9 @@
     --delete-button-width: 18px;
     --delete-button-margin-right: 10px;
 
-    --transition-duration-short: 0.1s;
-    --transition-duration-med: 0.2s;
-    --transition-duration-long: 0.4s;
+    --speed-fast: 0.1s;
+    --speed-med: 0.2s;
+    --speed-slow: 0.4s;
 }
 
 body {

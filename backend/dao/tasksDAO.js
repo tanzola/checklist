@@ -53,7 +53,7 @@ export default class TasksDAO {
 
     static async deleteTask(req) {
         try {
-            taskId = { userId: ObjectId(req.body.userId), _id: ObjectId(req.body._id) };
+            taskId = { userId: ObjectId(req.params.userId), _id: ObjectId(req.params.taskId) };
             const deleteResponse = await tasks.deleteOne(taskId);
             return deleteResponse;
         }

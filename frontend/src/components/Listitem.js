@@ -58,13 +58,21 @@ function Listitem(props) {
                     stage: data.stage !== undefined ? data.stage : taskStage
                 }
             );
-        } catch { console.log("failed to update task"); }
+        } catch (e) { console.log(`failed to update task, ${e}`); }
+    }
+
+    const deleteTask = () => {
+        if (isNew) { return; }
+        try {
+            const taskId = { userId: props.user._id, taskId: props.task._id }
+            TaskDataService.deleteTask(taskId).then(props.removeTask);
+        } catch (e) { console.log(`failed to delete task, ${e}`) }
     }
 
     const checkmark = <div className={`checkmark`} onClick={() => updateTask({ stage: (taskStage + 1) % 3 })}>
         <img src={imgStages[taskStage]} className={"unselectable"} style={{ width: "100%" }} />
     </div>;
-    const deleteButton = <img className="delete-button unselectable" src={imgDelete} alt="" />;
+    const deleteButton = <img className="delete-button unselectable" src={imgDelete} alt="" onClick={deleteTask} />;
     const box_preexisting = <div className="preexisting" onClick={() => setExists(!exists)} />;
     const textInput = (
         <div className="input-container">

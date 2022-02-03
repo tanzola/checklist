@@ -2,7 +2,7 @@ import http from '../http-common';
 
 class TaskDataService {
     get(data) {
-        return http.get(`users/id/${data.userId}/task/${data._id}`);
+        return http.get(`users/id/${data.userId}/task/${data.taskId}`);
     }
 
     createTask(data) {
@@ -13,8 +13,8 @@ class TaskDataService {
         return http.put("/users/task-update", data);
     }
 
-    deleteTask(id, userId) {
-        return http.delete(`users/task-delete`, { data: { _id: id, userId: userId } });
+    deleteTask(data) {
+        return http.delete(`/users/id/${data.userId}/task-delete/${data.taskId}`);
     }
 }
 

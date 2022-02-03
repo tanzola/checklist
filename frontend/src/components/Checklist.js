@@ -29,7 +29,7 @@ function Checklist(props) {
     const [listitems, setListitems] = useState(null);
     useEffect(() => {
         if (checklist.tasks) {
-            const tasks = [];
+            const tasks = Array();
             checklist.tasks.map(task => (
                 tasks.push(
                     <Listitem
@@ -59,7 +59,8 @@ function Checklist(props) {
                     key={numChanges}
                     addTask={addTask}
                     removeTask={removeTask}
-                />)
+                />
+            )
             setListitems(tasks);
         }
     }, [checklist, user]);

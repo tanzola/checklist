@@ -47,7 +47,7 @@ export default class ChecklistsDAO {
 
     static async deleteChecklist(req) {
         try {
-            checklistId = { userId: ObjectId(req.body.userId), _id: ObjectId(req.body._id) };
+            checklistId = { userId: ObjectId(req.params.userId), _id: ObjectId(req.params.checklistId) };
             const deleteResponse = await checklists.deleteOne(checklistId);
             return deleteResponse;
         }

@@ -34,7 +34,7 @@ function Listitem(props) {
                             text: data.text,
                             stage: 0
                         }
-                    ).then(props.addTask);
+                    ).then(props.updateTasks);
                 } catch (e) { console.log(`Failed create task, ${e}`); }
                 return;
             }
@@ -65,7 +65,7 @@ function Listitem(props) {
         if (isNew) { return; }
         try {
             const taskId = { userId: props.user._id, taskId: props.task._id }
-            TaskDataService.deleteTask(taskId).then(props.removeTask);
+            TaskDataService.deleteTask(taskId).then(props.updateTasks);
         } catch (e) { console.log(`failed to delete task, ${e}`) }
     }
 
@@ -90,7 +90,10 @@ function Listitem(props) {
         <input className="task-input"
             defaultValue={taskText}
             onBlur={(e) => updateTask({ text: e.target.value })}
-            onKeyDown={(e) => { if (e.key === 'Enter') { updateTask({ text: e.target.value }) } }}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') { updateTask({ text: e.target.value }); }
+                if (e.key === 'Escape') { setTyping(false); }
+            }}
             placeholder="New Task"
             spellCheck={false}
             autoFocus

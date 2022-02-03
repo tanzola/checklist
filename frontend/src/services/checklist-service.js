@@ -13,8 +13,8 @@ class ChecklistDataService {
         return http.put("users/checklist-update", data);
     }
 
-    deleteChecklist(id, userId) {
-        return http.delete(`users/checklist-delete`, { data: { _id: id, userId: userId } });
+    deleteChecklist(data) {
+        return http.delete(`/users/id/${data.userId}/checklist-delete/${data.checklistId}`);
     }
 }
 

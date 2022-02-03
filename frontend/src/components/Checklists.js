@@ -4,20 +4,40 @@ import UserDataService from '../services/user-service';
 
 function Checklists(props) {
 
+    const [numChecklistChanges, setNumChecklistChanges] = useState(0);
+    const updateChecklists = () => { setNumChecklistChanges(numChecklistChanges + 1); }
+
     const [user, setUser] = useState({});
     useEffect(() => {
         UserDataService.getById(props.user._id)
         .then(function(res) { setUser(res.data); })
-    }, []);
+    }, [numChecklistChanges]);
 
     let checklists = null;
+    let checklistPreexisting = {
+        _id: 1,
+        tasks: [],
+        name: 'New List',
+    }
     if (user.checklists) {        
         checklists = (
             <>
                 {user.checklists.map(checklist => (
-                    <Checklist user={user} checklist={checklist} key={checklist._id} />
+                    <Checklist
+                        exists={true}
+                        user={user}
+                        checklist={checklist}
+                        key={checklist._id}
+                        updateChecklists={updateChecklists}
+                    />
                 ))}
-                {/* <Checklist user={user} checklist={null} key={checklist._id} /> */}
+                <Checklist
+                    exists={false}
+                    user={user}
+                    checklist={checklistPreexisting}
+                    key={numChecklistChanges}
+                    updateChecklists={updateChecklists}
+                />
             </>
         )
     }

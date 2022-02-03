@@ -9,6 +9,7 @@
     border-width: 1px;
     font-size: 14px;
 }
+
 .cl-title {
     cursor: pointer;
     display: flex;
@@ -16,6 +17,7 @@
     border-bottom-style: solid;
     border-color: #363a3c;
     border-width: 1px;
+    transition-duration: var(--speed-med);
 }
 
 .cl-title p {
@@ -33,4 +35,29 @@
     margin: auto 13px auto 5px;
     object-fit: cover;
     right: 0;
+}
+
+.cl-preexisting {
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    transition-duration: var(--speed-fast);
+    border-color: var(--color-dark);
+    color: var(--color-darker);
+}
+
+.cl-preexisting:hover {
+    background-color: var(--color-darker);
+}
+
+.cl-preexisting img {
+    cursor: pointer;
+    pointer-events: auto;
+    height: var(--checkmark-size);
+    width: var(--checkmark-size);
+    min-width: var(--checkmark-size);
+    margin: auto calc(var(--checkmark-margin-x) + 2px);
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: var(--opacity-inactive);
 }

@@ -16,6 +16,7 @@ router.route('/id/:id/checklist/:checklistId').get(checklistsCtrl.apiGetChecklis
 
 router.post('/checklist-add', checklistsCtrl.apiPostChecklist);
 router.put('/checklist-update', checklistsCtrl.apiUpdateChecklist);
+router.delete('/id/:userId/checklist-delete/:checklistId', checklistsCtrl.apiDeleteChecklist);
 
 router.post('/task-add', tasksCtrl.apiPostTask);
 router.delete('/id/:userId/task-delete/:taskId', tasksCtrl.apiDeleteTask);

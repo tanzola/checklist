@@ -29,34 +29,37 @@
 }
 
 .checkmark {
-    float: left;
     cursor: pointer;
     pointer-events: auto;
     height: var(--checkmark-size);
     width: var(--checkmark-size);
     min-width: var(--checkmark-size);
     margin: auto var(--checkmark-margin-x);
-    border-radius: var(--checkmark-radius);
+    border-radius: 50%;
     overflow: hidden;
+    object-fit: cover;
 }
 
 .add-task {
-    opacity: 0.25;
+    opacity: var(--opacity-inactive);
 }
 
 .stage-0 {
     width: inherit;
-    background-color: var(--check-stage-0);;
+    background-color: var(--check-stage-0);
+    object-fit: cover;
 }
 
 .stage-1 {
     width: inherit;
     background-color: var(--check-stage-1);
+    object-fit: cover;
 }
 
 .stage-2 {
     width: inherit;
     background-color: var(--check-stage-2);
+    object-fit: cover;
 }
 
 .delete-button {

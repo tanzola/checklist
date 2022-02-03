@@ -10,7 +10,7 @@ function DropdownMenu(props) {
         <div className="dropdown-menu">
             <div className="dropdown-content">
                 <div className="dropdown-item">Rename</div>
-                <div className="dropdown-item">Delete</div>
+                <div className="dropdown-item" onClick={() => props.deleteChecklist()}>Delete</div>
             </div>
         </div>
     )

@@ -39,6 +39,8 @@
     --speed-fast: 0.1s;
     --speed-med: 0.2s;
     --speed-slow: 0.4s;
+
+    --opacity-inactive: 0.3;
 }
 
 body {

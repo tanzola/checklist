@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Listitem from './Listitem';
 import ChecklistDataService from '../services/checklist-service';
+import TaskDataService from '../services/task-service';
 import menuVert from '../img/menuVert.svg';
 import DropdownMenu from '../components/DropdownMenu';
 import imgAddList from '../img/addList.svg'
@@ -63,17 +64,24 @@ function Checklist(props) {
     function createChecklist() {
         setExists(true)
         try {
-            ChecklistDataService.createChecklist({ userId: user._id, name: "New List" })
-        } catch (e) { console.log(`failed to create new checklist, ${e}`) }
+            ChecklistDataService.createChecklist({ userId: user._id, name: "New List" });
+        } catch (e) { console.log(`failed to create new checklist, ${e}`); }
         props.updateChecklists();
     }
 
     function deleteChecklist() {
         try {
             const checklistId = { userId: props.user._id, checklistId: props.checklist._id }
-            ChecklistDataService.deleteChecklist(checklistId).then(props.updateChecklists);
-        } catch (e) { console.log(`failed to delete checklist, ${e}`) }
-        props.updateChecklists();
+            ChecklistDataService.deleteChecklist(checklistId)
+            .then(
+                checklist.tasks.forEach(task => {
+                    try {
+                        const taskId = { userId: props.user._id, taskId: task._id };
+                        TaskDataService.deleteTask(taskId);
+                    } catch (e) { console.log(`failed to delete task, ${e}`); }
+                }))
+            .then(props.updateChecklists);
+        } catch (e) { console.log(`failed to delete checklist, ${e}`); }
     }
 
     let renderChecklist;

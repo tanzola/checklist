@@ -21,7 +21,7 @@
     cursor: pointer;
     background-color: var(--color-darker);
     border-style: solid;
-    border-color: #3f4447;
+    border-color: var(--border-color-dark);
     border-width: 1px;
     display: flex;
     -webkit-box-align: center;

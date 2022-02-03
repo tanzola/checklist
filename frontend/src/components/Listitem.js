@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import imgAdd from '../img/add.svg';
+import imgAddTask from '../img/addTask.svg';
 import imgStage0 from '../img/taskStage-0.svg'
 import imgStage1 from '../img/taskStage-1.svg'
 import imgStage2 from '../img/taskStage-2.svg'
@@ -69,30 +70,41 @@ function Listitem(props) {
         } catch (e) { console.log(`failed to delete task, ${e}`) }
     }
 
-    const checkmark = <div className={`checkmark`} onClick={() => updateTask({ stage: (taskStage + 1) % 3 })}>
-        <img src={imgStages[taskStage]} className={"unselectable"} style={{ width: "100%" }} />
-    </div>;
-    const deleteButton = <img className="delete-button unselectable" src={imgDelete} alt="" onClick={deleteTask} />;
-    const box_preexisting = <div className="preexisting" onClick={() => setExists(!exists)} />;
-    const textInput = (
-        <div className="input-container">
-            <input className="input"
-                defaultValue={taskText}
-                onBlur={(e) => updateTask({ text: e.target.value })}
-                onKeyDown={(e) => { if (e.key === 'Enter') { updateTask({ text: e.target.value }) } }}
-                placeholder="New Task"
-                spellCheck={false}
-                autoFocus
-            />
+    const checkmark = (
+        <div
+            className={"checkmark unselectable"}
+            onClick={() => updateTask({ stage: (taskStage + 1) % 3 })}
+        >
+            <img src={imgStages[taskStage]}style={{ width: "100%" }} />
         </div>
     )
+
+    const deleteButton = <img className="delete-button unselectable" src={imgDelete} alt="" onClick={deleteTask} />;
+
+    const boxPreesixting = <div className="preexisting" onClick={() => setExists(!exists)}>
+        <div className={"checkmark unselectable"}>
+            <img src={imgAdd} className="add-task" />
+        </div>
+    </div>;
+
+    const textInput = (
+        <input className="task-input"
+            defaultValue={taskText}
+            onBlur={(e) => updateTask({ text: e.target.value })}
+            onKeyDown={(e) => { if (e.key === 'Enter') { updateTask({ text: e.target.value }) } }}
+            placeholder="New Task"
+            spellCheck={false}
+            autoFocus
+        />
+    );
+
     const textTyped = (
         <div className="box-text typed" onClick={() => setTyping(true)}>
-            <p >{taskText}</p>
+            <p>{taskText}</p>
         </div>
     );
 
-    const box_existing = (
+    const boxExisting = (
         <div className="listitem">
             {checkmark}
             {isTyping ? textInput : textTyped}
@@ -100,7 +112,7 @@ function Listitem(props) {
         </div>
     );
 
-    return <>{exists ? box_existing : box_preexisting}</>;
+    return <>{exists ? boxExisting : boxPreesixting}</>;
 }
 
 export default Listitem;

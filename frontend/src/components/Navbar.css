@@ -3,7 +3,7 @@
     background-color: var(--color-darker);
     color: var(--text-color-lighter);
     border-bottom-style: solid;
-    border-color: #3f4447;
+    border-color: var(--border-color-dark);
     border-width: 1px;
     display: flex;
     align-items: center;

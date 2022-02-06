@@ -63,9 +63,10 @@ function DropdownMenu(props) {
     )
 
     const menu = (
-        <div className="dropdown-menu" id={props.menuId}> {/* id from props */}
-            <div className="dropdown-item" onClick={() => setOpen(false)}>Rename</div> {/* item info from props */}
-            <div className="dropdown-item" onClick={() => props.deleteChecklist()}>Delete</div>
+        <div className="dropdown-menu" id={props.menuId}>
+            {props.items.map(item => (
+                <div className="dropdown-item" key={item.name} onClick={() => item.function()}>{item.name}</div>
+            ))}
         </div>
     )
 

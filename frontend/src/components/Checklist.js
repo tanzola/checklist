@@ -99,6 +99,10 @@ function Checklist(props) {
                             menuId={"cl-menu"}
                             img={menuVert}
                             width={"20px"}
+                            items={[
+                                { name: "Rename", function: renameChecklist },
+                                { name: "Delete", function: deleteChecklist }
+                            ]}
                             deleteChecklist={deleteChecklist}
                             renameChecklist={renameChecklist}
                             anchorPos = {{ top: true, left: true }}

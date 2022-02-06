@@ -1,0 +1,7 @@
+.cl-section {
+    display: flex;
+	flex-flow: row wrap;
+	margin: auto;
+	width: 100%;
+	/* color: var(--bg-color); */
+}

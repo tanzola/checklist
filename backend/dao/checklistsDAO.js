@@ -33,8 +33,7 @@ export default class ChecklistsDAO {
             checklistId = { userId: ObjectId(req.body.userId), _id: ObjectId(req.body._id) };
             req.body.items.map(item => ( item.key = ObjectId(item.key) ));
             parms = {
-                name: req.body.name,
-                items: req.body.items
+                name: req.body.name
             }
             const updateResponse = await checklists.updateOne( checklistId, { $set: parms });
             return updateResponse;

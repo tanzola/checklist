@@ -14,11 +14,6 @@ function Checklists(props) {
     }, [numChecklistChanges]);
 
     let checklists = null;
-    let checklistPreexisting = {
-        _id: 1,
-        tasks: [],
-        name: 'New List',
-    }
     if (user.checklists) {        
         checklists = (
             <>
@@ -34,7 +29,7 @@ function Checklists(props) {
                 <Checklist
                     exists={false}
                     user={user}
-                    checklist={checklistPreexisting}
+                    checklist={{}}
                     key={numChecklistChanges}
                     updateChecklists={updateChecklists}
                 />
@@ -43,7 +38,7 @@ function Checklists(props) {
     }
 
     return(
-        <>{checklists}</>
+        <section className="cl-section">{checklists}</section>
     )
 }
 

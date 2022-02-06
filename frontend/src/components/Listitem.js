@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import TaskDataService from '../services/task-service';
+import './Listitem.css';
 import imgAdd from '../img/add.svg';
 import imgStage0 from '../img/taskStage-0.svg'
 import imgStage1 from '../img/taskStage-1.svg'
 import imgStage2 from '../img/taskStage-2.svg'
 import imgDelete from '../img/delete.svg';
-import TaskDataService from '../services/task-service';
-import './Listitem.css';
 
 const imgStages = [imgStage0, imgStage1, imgStage2];
 
@@ -78,13 +78,21 @@ function Listitem(props) {
         </div>
     )
 
-    const deleteButton = <img className="delete-button unselectable" src={imgDelete} alt="" onClick={deleteTask} />;
+    const deleteButton = (
+        <img
+            className="delete-button unselectable"
+            src={imgDelete} alt=""
+            onClick={deleteTask}
+        />
+    );
 
-    const boxPreesixting = <div className="preexisting" onClick={() => setExists(!exists)}>
-        <div className={"checkmark unselectable"}>
-            <img src={imgAdd} className="add-task" />
+    const boxPreesixting = (
+        <div className="li-preexisting" onClick={() => setExists(!exists)}>
+            <div className={"checkmark unselectable"}>
+                <img src={imgAdd} className="add-task" />
+            </div>
         </div>
-    </div>;
+    );
 
     const textInput = (
         <input className="task-input"
@@ -92,7 +100,7 @@ function Listitem(props) {
             onBlur={(e) => updateTask({ text: e.target.value })}
             onKeyDown={(e) => {
                 if (e.key === 'Enter') { updateTask({ text: e.target.value }); }
-                if (e.key === 'Escape') { setTyping(false); }
+                if (e.key === 'Escape') { isNew ? setExists(false) : setTyping(false); }
             }}
             placeholder="New Task"
             spellCheck={false}
@@ -101,7 +109,7 @@ function Listitem(props) {
     );
 
     const textTyped = (
-        <div className="box-text typed" onClick={() => setTyping(true)}>
+        <div className="task-text" onClick={() => setTyping(true)}>
             <p>{taskText}</p>
         </div>
     );

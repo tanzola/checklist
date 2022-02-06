@@ -27,14 +27,14 @@ function Navbar(props) {
     );
 
     return (
-        <div className="navbar">
-            <div className="nav-elem">
+        <header className="navbar">
+            <nav className="nav-elem">
                 <NavLink to="/" className="logo nav-text">xTask</NavLink>
-            </div>
+            </nav>
             <div className="nav-elem">
                 {userinfo}
             </div>
-        </div>
+        </header>
     )
 }
 

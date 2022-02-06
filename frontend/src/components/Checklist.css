@@ -1,8 +1,12 @@
+.cl-container {
+    max-width: 800px;
+    margin: auto;
+}
+
 .cl {
     background-color: var(--color-dark);
     color: var(--text-color-light);
-    margin: 8px auto;
-    width: var(--cl-width);
+    margin: 8px;
     border-style: solid;
     border-radius: var(--cl-rounding);
     border-color: var(--cl-border-color);

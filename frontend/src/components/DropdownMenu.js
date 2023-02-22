@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import $ from 'jquery';
 import '../components/DropdownMenu.css';
 
 function useWindowWidth() {
@@ -33,8 +32,7 @@ function DropdownMenu(props) {
             const openMenu = document.getElementById(props.menuId);
             const menuRect = openMenu.getBoundingClientRect();
             const bodyRect = document.body.getBoundingClientRect();
-            let x = 0
-            let y = 0;
+            let x = 0, y = 0;
             if (props.anchorPos.top) { y -= iconRect.height; }
             if (props.anchorPos.right) { x += iconRect.width; }
             if (props.expandDir.left) { x -= menuRect.width; }
@@ -65,7 +63,12 @@ function DropdownMenu(props) {
     const menu = (
         <div className="dropdown-menu" id={props.menuId}>
             {props.items.map(item => (
-                <div className="dropdown-item" key={item.name} onClick={() => item.function()}>{item.name}</div>
+                <div className="dropdown-item"
+                    key={item.name}
+                    onClick={() => { setOpen(false); item.function(); }}
+                >
+                    {item.name}
+                </div>
             ))}
         </div>
     )

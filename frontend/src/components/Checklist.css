@@ -48,10 +48,7 @@
     transition-duration: var(--speed-fast);
     border-color: var(--color-dark);
     color: var(--color-darker);
-}
-
-.cl-preexisting:hover {
-    background-color: var(--color-darker);
+    background-color: var(--color-dark);
 }
 
 .cl-preexisting img {
@@ -64,4 +61,22 @@
     border-radius: 50%;
     overflow: hidden;
     opacity: var(--opacity-inactive);
+}
+
+.cl-input {
+    background-color: var(--color-dark);
+    color: var(--text-color-lightest);
+    font-family: 'Montserrat';
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* width: calc(100% - var(--delete-button-width) - var(--delete-button-margin-right) - 55px); */
+    width: 100%;
+    height: 25px;
+    text-align: left;
+    outline-style: none;
+    border-style: none;
+    margin: auto 0 auto 13px;
+    transition-duration: var(--speed-med);
+    color: white;
 }

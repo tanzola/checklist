@@ -6,13 +6,16 @@
     left: 0; /* set in js to remove flicker */
     opacity: 0; /* set in js to remove flicker */
     transition: opacity var(--speed-fast);
+    border: solid;
+    border-width: 1px;
+    border-color: var(--border-color-dark);
 }
 
 .dropdown-item {
-    padding: 10px;
+    padding: 10px 15px;
     border-bottom: solid;
     border-width: 1px;
-    border-color: var(--border-color-darker);
+    border-color: var(--border-color-dark);
     transition-duration: var(--speed-fast);
 }
 

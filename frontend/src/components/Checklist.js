@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Listitem from './Listitem';
 import ChecklistDataService from '../services/checklist-service';
 import TaskDataService from '../services/task-service';
@@ -8,7 +8,36 @@ import imgAddList from '../img/addList.svg'
 import './Checklist.css';
 
 function Checklist(props) {
+    const ref = useRef();
     const user = props.user;
+
+    const [exists, setExists] = useState(props.exists);
+    const [isTyping, setTyping] = useState(false);
+    const [numTaskChanges, setNumTaskChanges] = useState(0);
+    const updateTasks = () => { setNumTaskChanges(numTaskChanges + 1); }
+    const [checklist, setChecklist] = useState(exists ? {} : props.checklist);
+
+    //const[checklistName, setChecklistName] = useState(props.checklist.name === undefined ? 'New List' : props.checklist.name);
+
+    useEffect(() => {
+        const checkClickOutside = (e) => {
+            if (isTyping && ref.current && !ref.current.contains(e.target)) {
+                updateChecklist();
+                setTyping(false);
+            }
+        }
+        const checkEscape = (e) => {
+            if (isTyping && e.key === 'Escape') {
+                setTyping(false);
+            }
+        }
+        document.addEventListener('mousedown', checkClickOutside);
+        document.addEventListener('keydown', checkEscape);
+        return () => {
+            document.removeEventListener('mousedown', checkClickOutside);
+            document.removeEventListener('keydown', checkEscape);
+        }
+    }, [isTyping]);
 
     function createChecklist() {
         setExists(true)
@@ -30,19 +59,19 @@ function Checklist(props) {
         } catch (e) { console.log(`failed to delete checklist, ${e}`); }
     }
 
-    function renameChecklist(name) {
+    function updateChecklist(data) {
+        /*
         try {
             ChecklistDataService.updateChecklist(
                 { userId: user._id, checklistId: checklist._id, name: name }
             ).then(props.updateChecklists);
         } catch (e) { console.log(`failed to rename checklist, ${e}`); }
+        */
+       setTyping(false);
+       console.log('checklist updating..')
     }
 
-    const [exists, setExists] = useState(props.exists);
-    const [numTaskChanges, setNumTaskChanges] = useState(0);
-    const updateTasks = () => { setNumTaskChanges(numTaskChanges + 1); }
-
-    const [checklist, setChecklist] = useState(exists ? {} : props.checklist);
+    
     useEffect(() => {
         if (props.exists) {
             ChecklistDataService.get({ userId: user._id, checklistId: props.checklist._id })
@@ -86,13 +115,37 @@ function Checklist(props) {
             setListitems(tasks);
         }
     }, [checklist, user, exists]);
+    
+    const textInput = (
+        <input className="cl-input"
+            ref={ref}
+            id="cl-input"
+            defaultValue={checklist.name}
+            //onBlur={(e) => updateChecklist({ text: e.target.value })}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') { updateChecklist({ name: e.target.value }); }
+                if (e.key === 'Escape') { setTyping(false); }
+            }}
+            placeholder={props.name}
+            spellCheck={false}
+            autoFocus
+        />
+    );
+    
 
+    function rename() {
+        setTyping(true);
+        setTimeout(() => {
+            document.getElementById("cl-input").focus()
+        }, 1);
+    }
+    
     let renderChecklist;
     if (exists) {
         renderChecklist = (
             <div className="cl" key={checklist._id}>
                 <div className="cl-title">
-                    <p>{checklist.name}</p>
+                    {isTyping ? textInput : <p>{checklist.name}</p>}
                     <div className="menu-container unselectable">
                         <DropdownMenu
                             iconId={"cl-menu-icon"}
@@ -100,11 +153,9 @@ function Checklist(props) {
                             img={menuVert}
                             width={"20px"}
                             items={[
-                                { name: "Rename", function: renameChecklist },
+                                { name: "Rename", function: rename },
                                 { name: "Delete", function: deleteChecklist }
                             ]}
-                            deleteChecklist={deleteChecklist}
-                            renameChecklist={renameChecklist}
                             anchorPos = {{ top: true, left: true }}
                             expandDir = {{ left: true }}
                             extraCoords = {{ x: -5, y: -7 }}

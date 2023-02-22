@@ -15,6 +15,7 @@ function Listitem(props) {
     const [taskStage, setTaskStage] = useState(props.taskStage);
     const [taskText, setTaskText] = useState(props.text);
     const [isTyping, setTyping] = useState(props.typing);
+    const [isStaged, setLiStage] = useState(false);
     const [ogText, setOgText] = useState(props.text);
 
     function updateTask(data) {
@@ -86,8 +87,8 @@ function Listitem(props) {
         />
     );
 
-    const boxPreesixting = (
-        <div className="li-preexisting" onClick={() => setExists(!exists)}>
+    const BoxStagedExisting = (
+        <div className="li-stagedexisting" onClick={() => setExists(!exists)}>
             <div className={"checkmark unselectable"}>
                 <img src={imgAdd} className="add-task" />
             </div>
@@ -115,14 +116,14 @@ function Listitem(props) {
     );
 
     const boxExisting = (
-        <div className="listitem">
+        <div className="listitem-typed">
             {checkmark}
             {isTyping ? textInput : textTyped}
             {deleteButton}
         </div>
     );
 
-    return <>{exists ? boxExisting : boxPreesixting}</>;
+    return <>{exists ? boxExisting : BoxStagedExisting}</>;
 }
 
 export default Listitem;

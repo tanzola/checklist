@@ -7,8 +7,7 @@ import tasksDAO from './dao/tasksDAO.js';
 
 dotenv.config();
 const MongoClient = mongodb.MongoClient;
-
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 
 MongoClient.connect(
     process.env.USERS_DB_URI, { wtimeoutMS: 2500 }

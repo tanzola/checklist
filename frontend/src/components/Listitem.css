@@ -1,4 +1,4 @@
-.listitem {
+.listitem-typed {
     background-color: var(--color-darker);
     color: var(--text-color-light);
     pointer-events: none;
@@ -12,8 +12,20 @@
     transition-duration: var(--speed-med);
 }
 
-.listitem:last-child {
+.listitem-typed:last-child {
     border-bottom: none;
+}
+
+.li-stagedexisting {
+    display: flex;
+    height: 25px;
+    width: 100%;
+    align-self: center;
+    transition-duration: var(--speed-med);
+}
+
+.li-stagedexisting:hover {
+    background-color: var(--li-color);
 }
 
 .li-preexisting {
@@ -22,10 +34,6 @@
     width: 100%;
     align-self: center;
     transition-duration: var(--speed-med);
-}
-
-.li-preexisting:hover {
-    background-color: var(--li-color);
 }
 
 .checkmark {
@@ -93,7 +101,7 @@
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    width: calc(100% - var(--delete-button-width) - var(--delete-button-margin-right) - 55px);
+    width: 100%;
     height: 25px;
     text-align: left;
     outline-style: none;
